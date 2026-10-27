@@ -48,3 +48,21 @@ This file documents all use of AI tools in this project.
 **Outcome:** Used as a checklist. Design, colours, typography and components created by me in Figma.
 
 ---
+
+## 6. API helper
+
+**Tool used:** Claude Code (Anthropic)
+**Date:** 27 October 2026
+**Purpose:** Step-by-step guidance on where to place an API helper and what it needs (base URL, API key, headers, error handling), plus code review of my version.
+**Outcome:** I wrote `constants.js` and `apiRequest()` myself and fixed the issues found in review.
+
+---
+
+## 7. JSDoc
+
+- **Tool used:** Claude (Anthropic)
+- **Date:** 27 October 2026
+- **Purpose:** Generate a skeleton JSDoc comment for `apiRequest()`.
+- **Outcome:** Received a JSDoc template, which I reviewed and adjusted.
+
+---
