@@ -28,6 +28,9 @@
 }
 
 @theme {
+  /* Custom breakpoints */
+  --breakpoint-xs: 30rem; /* 480px */
+
   /* Fonts */
   --font-sans: var(--font-inter);
   --font-heading: var(--font-lora);
