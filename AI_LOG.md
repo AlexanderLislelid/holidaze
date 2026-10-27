@@ -66,3 +66,12 @@ This file documents all use of AI tools in this project.
 - **Outcome:** Received a JSDoc template, which I reviewed and adjusted.
 
 ---
+
+## 8. Figma colors
+
+- **Tool used:** Claude (Anthropic)
+- **Date:** 27 October 2026
+- **Purpose:** Generate hex codes for all my colors in the figma styleguide so that I could easily transfer them to my css file and use them in the project
+- **Outcome:** Received hex codes, which I added as variables in Figma and as custom tokens in Tailwind's @theme.
+
+---
