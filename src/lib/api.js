@@ -1,5 +1,26 @@
 import { BASE_URL, API_KEY } from "./constants";
 
+/**
+ * Makes a request to the Noroff API.
+ *
+ * @param {string} endpoint - The endpoint, e.g. "holidaze/venues"
+ * @param {Object} [options]
+ * @param {string} [options.method] - GET, POST, PUT or DELETE (default GET)
+ * @param {Object} [options.body] - Data to send
+ * @param {string} [options.token] - Access token if logged in
+ * @returns {Promise<Object|null>} The response data, or null if empty
+ *
+ * @example
+ * // Get all venues
+ * const { data } = await apiRequest("holidaze/venues");
+ *
+ * // Log in
+ * const { data } = await apiRequest("auth/login", {
+ *   method: "POST",
+ *   body: { email, password },
+ * });
+ */
+
 export async function apiRequest(
   endpoint,
   { method = "GET", body, token } = {},
