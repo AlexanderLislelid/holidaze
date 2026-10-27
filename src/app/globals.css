@@ -28,6 +28,10 @@
 }
 
 @theme {
+  /* Fonts */
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-lora);
+
   /* Primary */
   --color-primary-100: #2c6da6;
   --color-primary-90: #417caf;
