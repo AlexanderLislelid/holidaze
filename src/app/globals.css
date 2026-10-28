@@ -15,7 +15,7 @@
   }
 
   a {
-    @apply text-primary-100 underline-offset-2 hover:text-primary-hover hover:underline;
+    @apply text-primary-100 underline-offset-2 hover:font-medium hover:text-primary-hover;
   }
 
   button {
@@ -147,6 +147,6 @@
   }
 
   .footer-gradient a {
-    @apply text-background hover:text-highlight-100;
+    @apply text-background hover:text-white;
   }
 }
