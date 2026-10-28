@@ -135,4 +135,18 @@
   --color-info-border: #abc5db;
   --color-info-text: #1f4f7a;
   --color-info-icon: #2c6da6;
+
+  /* Footer */
+  --color-footer-top: #245b8b;
+  --color-footer-bottom: #163a5a;
+}
+
+@layer components {
+  .footer-gradient {
+    @apply bg-linear-to-b from-footer-top to-footer-bottom text-background;
+  }
+
+  .footer-gradient a {
+    @apply text-background hover:text-highlight-100;
+  }
 }
