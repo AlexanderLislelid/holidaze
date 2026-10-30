@@ -1,5 +1,7 @@
 import { Inter, Lora } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/layout/header";
+import Footer from "@/components/layout/footer";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -22,7 +24,11 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${inter.variable} ${lora.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col font-sans">{children}</body>
+      <body className="flex min-h-full flex-col font-sans">
+        <Header />
+        <div className="flex-1">{children}</div>
+        <Footer />
+      </body>
     </html>
   );
 }
