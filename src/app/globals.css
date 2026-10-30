@@ -147,6 +147,6 @@
   }
 
   .footer-gradient a {
-    @apply text-background hover:text-white;
+    @apply text-background/80 transition-colors hover:font-normal hover:text-white;
   }
 }
