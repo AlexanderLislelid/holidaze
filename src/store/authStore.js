@@ -1,10 +1,20 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
-const useAuthStore = create((set) => ({
-  user: null,
-  accesToken: null,
+const useAuthStore = create(
+  persist(
+    (set) => ({
+      user: null,
+      accessToken: null,
 
-  setAuth: (user, accesToken) => set({ user, accesToken }),
+      setAuth: (user, accessToken) => set({ user, accessToken }),
 
-  logout: () => set({ user: null, accesToken: null }),
-}));
+      logout: () => set({ user: null, accessToken: null }),
+    }),
+    {
+      name: "holidaze-auth-storage",
+    },
+  ),
+);
+
+export default useAuthStore;
