@@ -2,6 +2,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="footer-gradient">
+      <div className="h-1.5 bg-linear-to-r from-highlight-100 to-accent-100" />
       <div className="mx-auto max-w-300">
         <div className="flex flex-col justify-between p-4 sm:flex-row">
           <div className="flex flex-col gap-4">
