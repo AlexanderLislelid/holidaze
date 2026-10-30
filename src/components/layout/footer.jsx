@@ -6,11 +6,12 @@ export default function Footer() {
         <div className="flex flex-col justify-between p-4 sm:flex-row">
           <div className="flex flex-col gap-4">
             <Link href="/">
-              <img src="/holidaze-logo-dark-36px.svg" />
+              <img src="/holidaze-logo-dark-36px.svg" alt="Holidaze home" />
             </Link>
             <p className="max-w-75">
               Find and book places to stay, or list your own venue
             </p>
+            <hr className="my-2 border-t border-current opacity-30 sm:hidden" />
           </div>
           <div className="mt-14 flex gap-8">
             <div className="flex flex-col gap-2">
@@ -27,8 +28,8 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <hr className="mx-4 my-2 border-t border-current opacity-30" />
-        <p className="flex justify-end px-4 pb-2 text-sm text-text-30">
+        <hr className="mx-4 my-6 border-t border-current opacity-30" />
+        <p className="flex justify-end px-4 pb-4 text-sm text-text-30">
           &copy;2026 Holidaze · Project Exam 2
         </p>
       </div>
