@@ -73,6 +73,9 @@ const venueManagerLinks = [
 
 export default function NavMenu() {
   const user = useAuthStore((state) => state.user);
+  const venueManager = user?.venueManager;
+  const guest = !user;
+
   const pathName = usePathname();
 
   return <nav></nav>;
