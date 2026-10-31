@@ -15,7 +15,7 @@
   }
 
   a {
-    @apply text-primary-100 underline-offset-2 hover:font-medium hover:text-primary-hover;
+    @apply underline-offset-2 hover:font-medium;
   }
 
   button {
