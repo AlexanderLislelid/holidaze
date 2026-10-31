@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NavMenu from "../navigation/NavMenu";
 
 export default function Header() {
   return (
@@ -6,6 +7,7 @@ export default function Header() {
       <Link href="/">
         <img src="/holidaze-logo-light-36px.svg" />
       </Link>
+      <NavMenu />
     </header>
   );
 }

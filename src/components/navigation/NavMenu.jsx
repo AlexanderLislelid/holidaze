@@ -36,11 +36,6 @@ const userLinks = [
     label: "My bookings",
     icon: Calendar,
   },
-  {
-    href: "/#",
-    label: "Log out",
-    icon: LogOut,
-  },
 ];
 
 const venueManagerLinks = [
@@ -64,11 +59,6 @@ const venueManagerLinks = [
     label: "My bookings",
     icon: Calendar,
   },
-  {
-    href: "/#",
-    label: "Log out",
-    icon: LogOut,
-  },
 ];
 
 export default function NavMenu() {
@@ -84,7 +74,7 @@ export default function NavMenu() {
         {guest
           ? guestLinks.map(({ href, label, icon: Icon }) => (
               <li key={label}>
-                <Link href={href}>
+                <Link href={href} className="flex items-center gap-2">
                   <Icon />
                   {label}
                 </Link>
@@ -92,20 +82,32 @@ export default function NavMenu() {
             ))
           : venueManager
             ? venueManagerLinks.map(({ href, label, icon: Icon }) => (
-                <li key={label}>
-                  <Link href={href}>
-                    <Icon />
-                    {label}
-                  </Link>
-                </li>
+                <div>
+                  <li key={label}>
+                    <Link href={href}>
+                      <Icon />
+                      {label}
+                    </Link>
+                  </li>
+                  <button>
+                    {/* note to self: add reusable logout button component here */}
+                    Log out
+                  </button>
+                </div>
               ))
             : userLinks.map(({ href, label, icon: Icon }) => (
-                <li key={label}>
-                  <Link href={href}>
-                    <Icon />
-                    {label}
-                  </Link>
-                </li>
+                <div>
+                  <li key={label}>
+                    <Link href={href}>
+                      <Icon />
+                      {label}
+                    </Link>
+                  </li>
+                  <button>
+                    {/* note to self: add reusable logout button component here */}
+                    Log out
+                  </button>
+                </div>
               ))}
       </ul>
     </nav>
