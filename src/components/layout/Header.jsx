@@ -13,7 +13,7 @@ export default function Header() {
   }
 
   return (
-    <header className="flex justify-between p-4">
+    <header className="mx-auto flex w-full max-w-300 justify-between p-4">
       <Link href="/">
         <img src="/holidaze-logo-light-36px.svg" />
       </Link>
