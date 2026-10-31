@@ -78,5 +78,36 @@ export default function NavMenu() {
 
   const pathName = usePathname();
 
-  return <nav></nav>;
+  return (
+    <nav>
+      <ul>
+        {guest
+          ? guestLinks.map(({ href, label, icon: Icon }) => (
+              <li key={label}>
+                <Link href={href}>
+                  <Icon />
+                  {label}
+                </Link>
+              </li>
+            ))
+          : venueManager
+            ? venueManagerLinks.map(({ href, label, icon: Icon }) => (
+                <li key={label}>
+                  <Link href={href}>
+                    <Icon />
+                    {label}
+                  </Link>
+                </li>
+              ))
+            : userLinks.map(({ href, label, icon: Icon }) => (
+                <li key={label}>
+                  <Link href={href}>
+                    <Icon />
+                    {label}
+                  </Link>
+                </li>
+              ))}
+      </ul>
+    </nav>
+  );
 }
