@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import useAuthStore from "@/store/authStore";
+import LogoutButton from "@/components/buttons/LogoutButton";
 import {
   Calendar,
   House,
@@ -96,11 +97,7 @@ export default function NavMenu() {
         ))}
         {!guest && (
           <li>
-            <button className="flex items-center gap-2">
-              {/* note to self: add reusable logout button component here */}
-              <LogOut />
-              Log out
-            </button>
+            <LogoutButton />
           </li>
         )}
       </ul>
