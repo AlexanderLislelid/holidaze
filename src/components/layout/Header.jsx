@@ -82,6 +82,7 @@ export default function Header() {
           onClick={toggleMenu}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
+          className="p-2 text-primary-100"
         >
           {menuOpen ? <X /> : <MenuSquare />}
         </button>
