@@ -18,7 +18,7 @@ export default function Header() {
   const isActive = (href) => pathName === href;
 
   const linkClass = (href) =>
-    `rounded-md px-3 py-2 ${isActive(href) ? "text-primary-hover bg-secondary-30" : ""}`;
+    ` ${isActive(href) ? "text-primary-hover font-semibold" : ""}`;
 
   function toggleMenu() {
     setMenuOpen((open) => !open);
