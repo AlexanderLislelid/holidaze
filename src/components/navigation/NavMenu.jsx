@@ -8,7 +8,6 @@ import {
   Calendar,
   House,
   HousePlus,
-  LogOut,
   UserRound,
   UserRoundPlus,
 } from "lucide-react";
