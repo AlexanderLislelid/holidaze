@@ -75,3 +75,12 @@ This file documents all use of AI tools in this project.
 - **Outcome:** Received hex codes, which I added as variables in Figma and as custom tokens in Tailwind's @theme.
 
 ---
+
+## 9. Code review of NavMenu links
+
+- **Tool used:** Claude Code (Anthropic)
+- **Date:** 31 October 2026
+- **Purpose:** Code review of the rendering logic in NavMenu.jsx. My version had three almost identical map() blocks (guest, user and venue manager)
+- **Outcome:** Refactored the component based on the feedback. I now pick the correct link array first (guestLinks, userLinks or venueManagerLinks) and render it with a single map().
+
+---
