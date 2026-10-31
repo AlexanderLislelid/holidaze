@@ -22,7 +22,7 @@ export default function Header() {
         <button
           className="sm:hidden"
           onClick={toggleMenu}
-          aria-label={menuOpen ? "Lukk meny" : "Opne meny"}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
         >
           {menuOpen ? <X /> : <MenuSquare />}
