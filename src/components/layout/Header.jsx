@@ -33,11 +33,12 @@ export default function Header() {
         <Link
           href="/"
           className={`hidden md:block ${linkClass("/")}`}
-          aria-current={isActive("/") ? "page" : undefined}
+          aria-current={isActive("/") ? "page" : null}
         >
           Venues
         </Link>
-        {/* Mobilmeny */}
+
+        {/* Mobile menu */}
         <button
           className="md:hidden"
           onClick={toggleMenu}
@@ -46,7 +47,8 @@ export default function Header() {
         >
           {menuOpen ? <X /> : <MenuSquare />}
         </button>
-        {/* Desktopmeny */}
+
+        {/* Desktop menu */}
         <button
           className="hidden items-center gap-2 rounded-full bg-primary-100 py-1 pr-3 pl-1 text-sm text-white hover:bg-primary-hover md:flex"
           onClick={toggleMenu}
@@ -76,7 +78,8 @@ export default function Header() {
       <Link href="/">
         <img src="/holidaze-logo-light-36px.svg" alt="Holidaze" />
       </Link>
-      {/* Mobilmeny */}
+
+      {/* Mobile menu */}
       <div className="relative md:hidden">
         <button
           onClick={toggleMenu}
@@ -92,14 +95,15 @@ export default function Header() {
           <NavMenu />
         </div>
       </div>
-      {/* Desktopmeny */}
+
+      {/* Desktop menu */}
       <nav className="hidden md:block">
         <ul className="flex items-center gap-4">
           <li>
             <Link
               href="/"
               className={linkClass("/")}
-              aria-current={isActive("/") ? "page" : undefined}
+              aria-current={isActive("/") ? "page" : null}
             >
               Venues
             </Link>
@@ -108,7 +112,7 @@ export default function Header() {
             <Link
               href="/login"
               className={linkClass("/login")}
-              aria-current={isActive("/login") ? "page" : undefined}
+              aria-current={isActive("/login") ? "page" : null}
             >
               Log in
             </Link>
@@ -117,7 +121,7 @@ export default function Header() {
             <Link
               href="/register"
               className={`flex items-center gap-2 rounded-full px-4 py-2 text-white hover:bg-primary-hover ${isActive("/register") ? "bg-primary-hover" : "bg-primary-100"}`}
-              aria-current={isActive("/register") ? "page" : undefined}
+              aria-current={isActive("/register") ? "page" : null}
             >
               <UserRoundPlus size={20} /> Register
             </Link>
