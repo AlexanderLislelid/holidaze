@@ -15,12 +15,12 @@ import {
 
 const guestLinks = [
   {
-    href: "/#",
+    href: "/register",
     label: "Register",
     icon: UserRoundPlus,
   },
   {
-    href: "/#",
+    href: "/login",
     label: "Login",
     icon: UserRound,
   },
