@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import NavMenu from "../navigation/NavMenu";
-import { MenuIcon, MenuSquare, X } from "lucide-react";
+import { ChevronDown, MenuSquare, X, UserRoundPlus } from "lucide-react";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import useAuthStore from "@/store/authStore";
 
 export default function Header() {
@@ -12,6 +13,13 @@ export default function Header() {
 
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const pathName = usePathname();
+
+  const isActive = (href) => pathName === href;
+
+  const linkClass = (href) =>
+    `rounded-md px-3 py-2 ${isActive(href) ? "text-primary-hover bg-secondary-30" : ""}`;
+
   function toggleMenu() {
     setMenuOpen((open) => !open);
   }
@@ -19,24 +27,45 @@ export default function Header() {
   return user ? (
     <header className="mx-auto flex w-full max-w-300 items-center justify-between bg-white p-3">
       <Link href="/">
-        <img src="/holidaze-logo-light-36px.svg" />
+        <img src="/holidaze-logo-light-36px.svg" alt="Holidaze" />
       </Link>
-      <div className="relative">
+      <div className="relative flex items-center gap-4">
+        <Link
+          href="/"
+          className={`hidden md:block ${linkClass("/")}`}
+          aria-current={isActive("/") ? "page" : undefined}
+        >
+          Venues
+        </Link>
         {/* Mobilmeny */}
         <button
-          className="sm:hidden"
+          className="md:hidden"
           onClick={toggleMenu}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
         >
           {menuOpen ? <X /> : <MenuSquare />}
         </button>
-        <button className="hidden sm:flex" onClick={toggleMenu}>
-          {/*  Legg inn desktop knappen her!  og endre chevron pila*/}
-          <MenuIcon />
+        {/* Desktopmeny */}
+        <button
+          className="hidden items-center gap-2 rounded-full bg-primary-100 py-1 pr-3 pl-1 text-sm text-white hover:bg-primary-hover md:flex"
+          onClick={toggleMenu}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+        >
+          <img
+            src={user.avatar?.url}
+            alt=""
+            className="size-7 rounded-full object-cover"
+          />
+          {user.name}
+          <ChevronDown
+            size={16}
+            className={`transition-transform ${menuOpen ? "rotate-180" : ""}`}
+          />
         </button>
         <div
-          className={`${menuOpen ? "block" : "hidden"} absolute top-full right-0 mt-6`}
+          className={`${menuOpen ? "block" : "hidden"} absolute top-full right-0 z-10 mt-4`}
         >
           <NavMenu />
         </div>
@@ -45,21 +74,55 @@ export default function Header() {
   ) : (
     <header className="mx-auto flex w-full max-w-300 items-center justify-between bg-white p-3">
       <Link href="/">
-        <img src="/holidaze-logo-light-36px.svg" />
+        <img src="/holidaze-logo-light-36px.svg" alt="Holidaze" />
       </Link>
-      <div>
-        <ul className="flex gap-4">
+      {/* Mobilmeny */}
+      <div className="relative md:hidden">
+        <button
+          onClick={toggleMenu}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+        >
+          {menuOpen ? <X /> : <MenuSquare />}
+        </button>
+        <div
+          className={`${menuOpen ? "block" : "hidden"} absolute top-full right-0 z-10 mt-4`}
+        >
+          <NavMenu />
+        </div>
+      </div>
+      {/* Desktopmeny */}
+      <nav className="hidden md:block">
+        <ul className="flex items-center gap-4">
           <li>
-            <Link href="/">Venues</Link>
+            <Link
+              href="/"
+              className={linkClass("/")}
+              aria-current={isActive("/") ? "page" : undefined}
+            >
+              Venues
+            </Link>
           </li>
           <li>
-            <Link href="/login">Log in</Link>
+            <Link
+              href="/login"
+              className={linkClass("/login")}
+              aria-current={isActive("/login") ? "page" : undefined}
+            >
+              Log in
+            </Link>
           </li>
           <li>
-            <Link href="/register">Register</Link>
+            <Link
+              href="/register"
+              className={`flex items-center gap-2 rounded-full px-4 py-2 text-white hover:bg-primary-hover ${isActive("/register") ? "bg-primary-hover" : "bg-primary-100"}`}
+              aria-current={isActive("/register") ? "page" : undefined}
+            >
+              <UserRoundPlus size={20} /> Register
+            </Link>
           </li>
         </ul>
-      </div>
+      </nav>
     </header>
   );
 }
