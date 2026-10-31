@@ -12,7 +12,38 @@ import {
   UserRoundPlus,
 } from "lucide-react";
 
+const guestLinks = [
+  {
+    href: "/#",
+    label: "Register",
+    icon: UserRoundPlus,
+  },
+  {
+    href: "/#",
+    label: "Login",
+    icon: UserRound,
+  },
+];
+
 const userLinks = [
+  {
+    href: "/profile",
+    label: "Profile",
+    icon: UserRound,
+  },
+  {
+    href: "/#",
+    label: "My bookings",
+    icon: Calendar,
+  },
+  {
+    href: "/#",
+    label: "Log out",
+    icon: LogOut,
+  },
+];
+
+const venueManagerLinks = [
   {
     href: "/profile",
     label: "Profile",
@@ -38,29 +69,11 @@ const userLinks = [
     label: "Log out",
     icon: LogOut,
   },
-  {
-    href: "/#",
-    label: "Register",
-    icon: UserRoundPlus,
-  },
 ];
 
 export default function NavMenu() {
   const user = useAuthStore((state) => state.user);
   const pathName = usePathname();
 
-  return (
-    <nav>
-      {userLinks.map(({ href, label, icon: Icon }) => (
-        <Link
-          key={label}
-          href={href}
-          className={pathName === href ? "active" : ""}
-        >
-          <Icon />
-          {label}
-        </Link>
-      ))}
-    </nav>
-  );
+  return <nav></nav>;
 }
