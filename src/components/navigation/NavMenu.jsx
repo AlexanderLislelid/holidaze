@@ -68,47 +68,41 @@ export default function NavMenu() {
 
   const pathName = usePathname();
 
+  const isActive = (href) => pathName === href;
+
+  const linkClass = (href) =>
+    `flex items-center gap-2 ${isActive(href) ? "text-primary-hover bg-secondary-30" : ""}`;
+
+  const links = guest
+    ? guestLinks
+    : venueManager
+      ? venueManagerLinks
+      : userLinks;
+
   return (
     <nav>
       <ul>
-        {guest
-          ? guestLinks.map(({ href, label, icon: Icon }) => (
-              <li key={label}>
-                <Link href={href} className="flex items-center gap-2">
-                  <Icon />
-                  {label}
-                </Link>
-              </li>
-            ))
-          : venueManager
-            ? venueManagerLinks.map(({ href, label, icon: Icon }) => (
-                <div>
-                  <li key={label}>
-                    <Link href={href}>
-                      <Icon />
-                      {label}
-                    </Link>
-                  </li>
-                  <button>
-                    {/* note to self: add reusable logout button component here */}
-                    Log out
-                  </button>
-                </div>
-              ))
-            : userLinks.map(({ href, label, icon: Icon }) => (
-                <div>
-                  <li key={label}>
-                    <Link href={href}>
-                      <Icon />
-                      {label}
-                    </Link>
-                  </li>
-                  <button>
-                    {/* note to self: add reusable logout button component here */}
-                    Log out
-                  </button>
-                </div>
-              ))}
+        {links.map(({ href, label, icon: Icon }) => (
+          <li key={label}>
+            <Link
+              href={href}
+              className={linkClass(href)}
+              aria-current={isActive(href) ? "page" : undefined}
+            >
+              <Icon />
+              {label}
+            </Link>
+          </li>
+        ))}
+        {!guest && (
+          <li>
+            <button className="flex items-center gap-2">
+              {/* note to self: add reusable logout button component here */}
+              <LogOut />
+              Log out
+            </button>
+          </li>
+        )}
       </ul>
     </nav>
   );
