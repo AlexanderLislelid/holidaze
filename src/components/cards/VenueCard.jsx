@@ -1,7 +1,11 @@
-import { Star } from "lucide-react";
+import { MapPin, Star, Users } from "lucide-react";
 
 export default function VenueCard({ venue }) {
   const image = venue.media?.[0];
+  const tags = Object.entries(venue.meta).filter(
+    ([tag, value]) => value === true,
+  );
+  console.log(tags);
 
   return (
     <div className="m-4 max-w-75 overflow-hidden rounded-xl shadow-lg">
@@ -21,9 +25,28 @@ export default function VenueCard({ venue }) {
         )}
       </div>
 
-      <div className="flex flex-col gap-4 border-b border-secondary-20 px-4">
+      <div className="flex flex-col gap-4 border-b border-secondary-20 p-4">
         <h2 className="truncate text-2xl font-bold">{venue.name}</h2>
-        <p>{venue.description}</p>
+        <div className="flex gap-2">
+          <MapPin size={20} className="text-accent-100" />
+          <p className="truncate font-medium">
+            {venue.location.address}, {venue.location.country}
+          </p>
+        </div>
+        <div className="flex gap-2">
+          <Users size={20} className="text-primary-100" />
+          <p className="font-medium">Up to {venue.maxGuests} guests</p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {tags.map(([tag]) => (
+            <span
+              key={tag}
+              className="flex items-center gap-1 rounded-full bg-primary-10 px-2 py-1 text-sm text-info-text"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );
