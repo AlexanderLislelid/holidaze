@@ -2,8 +2,15 @@
 import { apiRequest } from "@/lib/api";
 import VenueCard from "../cards/VenueCard";
 
-export default async function Venues() {
-  const { data } = await apiRequest("holidaze/venues");
+export default async function Venues({ query }) {
+  const endpoint = query
+    ? `holidaze/venues/search?q=${encodeURIComponent(query)}`
+    : "holidaze/venues";
+  const { data } = await apiRequest(endpoint);
+
+  if (!data.length) {
+    return <p>No venues found.</p>;
+  }
 
   return (
     <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
