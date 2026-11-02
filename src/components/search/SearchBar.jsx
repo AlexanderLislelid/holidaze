@@ -6,7 +6,7 @@ export default function SearchBar() {
     <Form action="/" className="relative w-full max-w-88">
       <input
         name="query"
-        placeholder="Search venues"
+        placeholder="Find your destination"
         className="w-full rounded-full border border-muted-70 py-2 pr-30 pl-4"
       />
       <button
