@@ -11,10 +11,14 @@ export default function VenueCard({ venue }) {
           alt={image?.alt || venue.name}
           className="h-48 w-full rounded-t-xl object-cover"
         />
-        <span className="absolute top-2 left-2 inline-flex items-center gap-1 rounded-full bg-white px-2 py-0.5 text-sm">
-          <Star size={14} aria-hidden="true" />
-          {venue.rating}
-        </span>
+        {venue.rating ? (
+          <span className="absolute top-2 left-2 inline-flex items-center gap-1 rounded-full bg-white px-2 py-0.5 text-sm">
+            <Star size={14} aria-hidden="true" />
+            {venue.rating}
+          </span>
+        ) : (
+          ""
+        )}
       </div>
 
       <div className="flex flex-col gap-4 border-b border-secondary-20 px-4">
