@@ -84,3 +84,12 @@ This file documents all use of AI tools in this project.
 - **Outcome:** Refactored the component based on the feedback. I now pick the correct link array first (guestLinks, userLinks or venueManagerLinks) and render it with a single map().
 
 ---
+
+## 10. Venue amenities in VenueCard
+
+- **Tool used:** Claude Code (Anthropic)
+- **Date:** 2 November 2026
+- **Purpose:** Hints on how to turn the meta object into an array so I can render the amenities (wifi, parking, breakfast, pets) on the venue cards.
+- **Outcome:** Got hints about Object.entries()
+
+---
