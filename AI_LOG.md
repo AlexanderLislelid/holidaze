@@ -103,3 +103,12 @@ This file documents all use of AI tools in this project.
 - **Outcome:** Claude Code replaced the <img> tags with <Image /> and added images.remotePatterns to next.config.mjs so images from external URLs are allowed. I reviewed the changes and asked for a simpler sizes value on the venue cards. The lint warnings are gone.
 
 ---
+
+## 12. Prerendering errors
+
+- **Tool used:** Claude Code (Anthropic)
+- **Date:** 2 November 2026
+- **Purpose:** Fixing two Next.js errors on /venues/[id]: usePathname() in the Header was used outside of Suspense, and the fetch in apiRequest() was uncached data during prerendering.
+- **Outcome:** Claude Code wrapped the Header in <Suspense> in the root layout with a HeaderFallback that only shows the logo, and added a loading.jsx. I chose to make it a global loader in src/app/loading.jsx. The build now passes.
+
+---
