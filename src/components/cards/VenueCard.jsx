@@ -1,4 +1,4 @@
-import { ArrowBigLeft, ArrowRight, MapPin, Star, Users } from "lucide-react";
+import { ArrowRight, MapPin, Star, Users } from "lucide-react";
 import Link from "next/link";
 
 export default function VenueCard({ venue }) {
@@ -6,7 +6,6 @@ export default function VenueCard({ venue }) {
   const tags = Object.entries(venue.meta).filter(
     ([tag, value]) => value === true,
   );
-  console.log(tags);
 
   return (
     <div className="m-4 max-w-75 overflow-hidden rounded-xl shadow-lg">
