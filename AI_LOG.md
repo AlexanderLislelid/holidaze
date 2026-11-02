@@ -93,3 +93,13 @@ This file documents all use of AI tools in this project.
 - **Outcome:** Got hints about Object.entries()
 
 ---
+
+## 11. Replacing <img> with next/image
+
+- **Tool used:** Claude Code (Anthropic)
+- **Date:** 2 November 2026
+- **Purpose:** After running npm run lint I had several warnings regarding using the regular <img> tags instead of <Image/> in VenueCard, Header, Footer and NavMenu.
+  Asked AI to replace the img tags with next/image
+- **Outcome:** Claude Code replaced the <img> tags with <Image /> and added images.remotePatterns to next.config.mjs so images from external URLs are allowed. I reviewed the changes and asked for a simpler sizes value on the venue cards. The lint warnings are gone.
+
+---
