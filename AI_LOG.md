@@ -90,7 +90,7 @@ This file documents all use of AI tools in this project.
 - **Tool used:** Claude Code (Anthropic)
 - **Date:** 2 November 2026
 - **Purpose:** Hints on how to turn the meta object into an array so I can render the amenities (wifi, parking, breakfast, pets) on the venue cards.
-- **Outcome:** Got hints about Object.entries()
+- **Outcome:** Got hints about Object.entries() and created a filtered tags array that I could map over and render.
 
 ---
 
