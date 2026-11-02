@@ -1,4 +1,5 @@
 import { ArrowRight, MapPin, Star, Users } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function VenueCard({ venue }) {
@@ -9,11 +10,13 @@ export default function VenueCard({ venue }) {
 
   return (
     <div className="m-4 overflow-hidden rounded-xl shadow-lg">
-      <div className="relative">
-        <img
-          src={image?.url || "https://placehold.co/400"}
+      <div className="relative h-48">
+        <Image
+          src={image?.url || "https://placehold.co/400.png"}
           alt={image?.alt || venue.name}
-          className="h-48 w-full rounded-t-xl object-cover"
+          fill
+          sizes="(min-width: 640px) 50vw, 100vw"
+          className="rounded-t-xl object-cover"
         />
         {venue.rating ? (
           <span className="absolute top-2 left-2 inline-flex items-center gap-1 rounded-full bg-warning-bg px-2 py-0.5 text-sm font-medium text-warning-text shadow-md">

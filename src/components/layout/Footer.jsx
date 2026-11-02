@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Hotel, House, LogIn, Search, UserPlus } from "lucide-react";
 export default function Footer() {
@@ -8,7 +9,12 @@ export default function Footer() {
         <div className="flex flex-col justify-between pt-10 pb-4 sm:flex-row">
           <div className="flex flex-col gap-4">
             <Link href="/">
-              <img src="/holidaze-logo-dark-36px.svg" alt="Holidaze home" />
+              <Image
+                src="/holidaze-logo-dark-36px.svg"
+                alt="Holidaze home"
+                width={150}
+                height={46}
+              />
             </Link>
             <p className="max-w-75 leading-relaxed text-background/80">
               Find and book places to stay, or list your own venue

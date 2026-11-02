@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import useAuthStore from "@/store/authStore";
@@ -89,11 +90,15 @@ export default function NavMenu() {
     <nav className="w-60 rounded-lg border border-border bg-white p-3 shadow-md">
       {!guest && (
         <div className="mb-2 flex items-center gap-3 border-b border-border px-3 pb-3">
-          <img
-            src={user.avatar?.url}
-            alt={user.avatar?.alt || ""}
-            className="size-10 rounded-full object-cover"
-          />
+          {user.avatar?.url && (
+            <Image
+              src={user.avatar.url}
+              alt={user.avatar.alt || ""}
+              width={40}
+              height={40}
+              className="size-10 rounded-full object-cover"
+            />
+          )}
           <div className="flex flex-col items-start gap-1">
             <span className="text-sm font-medium">{user.name}</span>
             <span className="rounded-full bg-primary-10 px-2 py-0.5 text-xs text-primary-100">

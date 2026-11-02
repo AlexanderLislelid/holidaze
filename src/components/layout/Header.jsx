@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import NavMenu from "../navigation/NavMenu";
 import { ChevronDown, MenuSquare, X, UserRoundPlus } from "lucide-react";
@@ -27,7 +28,13 @@ export default function Header() {
   return user ? (
     <header className="mx-auto flex w-full max-w-300 items-center justify-between bg-white p-3">
       <Link href="/">
-        <img src="/holidaze-logo-light-36px.svg" alt="Holidaze" />
+        <Image
+          src="/holidaze-logo-light-36px.svg"
+          alt="Holidaze"
+          width={150}
+          height={46}
+          preload
+        />
       </Link>
       <div className="relative flex items-center gap-4">
         <Link
@@ -55,11 +62,15 @@ export default function Header() {
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
         >
-          <img
-            src={user.avatar?.url}
-            alt=""
-            className="size-7 rounded-full object-cover"
-          />
+          {user.avatar?.url && (
+            <Image
+              src={user.avatar.url}
+              alt=""
+              width={28}
+              height={28}
+              className="size-7 rounded-full object-cover"
+            />
+          )}
           {user.name}
           <ChevronDown
             size={16}
@@ -76,7 +87,13 @@ export default function Header() {
   ) : (
     <header className="mx-auto flex w-full max-w-300 items-center justify-between bg-white p-3">
       <Link href="/">
-        <img src="/holidaze-logo-light-36px.svg" alt="Holidaze" />
+        <Image
+          src="/holidaze-logo-light-36px.svg"
+          alt="Holidaze"
+          width={150}
+          height={46}
+          preload
+        />
       </Link>
 
       {/* Mobile menu */}
