@@ -16,8 +16,12 @@ export default function VenueCard({ venue }) {
           className="h-48 w-full rounded-t-xl object-cover"
         />
         {venue.rating ? (
-          <span className="absolute top-2 left-2 inline-flex items-center gap-1 rounded-full bg-white px-2 py-0.5 text-sm">
-            <Star size={14} aria-hidden="true" />
+          <span className="absolute top-2 left-2 inline-flex items-center gap-1 rounded-full bg-warning-bg px-2 py-0.5 text-sm font-medium text-warning-text shadow-md">
+            <Star
+              size={16}
+              aria-hidden="true"
+              className="fill-warning-border text-accent-100"
+            />
             {venue.rating}
           </span>
         ) : (
@@ -41,7 +45,7 @@ export default function VenueCard({ venue }) {
           {tags.map(([tag]) => (
             <span
               key={tag}
-              className="flex items-center gap-1 rounded-full bg-primary-10 px-2 py-1 text-sm text-info-text"
+              className="flex items-center gap-1 rounded-full border border-primary-70 bg-primary-10 px-2 text-sm text-info-text"
             >
               {tag}
             </span>
