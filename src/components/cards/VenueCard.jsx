@@ -1,4 +1,5 @@
-import { MapPin, Star, Users } from "lucide-react";
+import { ArrowBigLeft, ArrowRight, MapPin, Star, Users } from "lucide-react";
+import Link from "next/link";
 
 export default function VenueCard({ venue }) {
   const image = venue.media?.[0];
@@ -47,6 +48,19 @@ export default function VenueCard({ venue }) {
             </span>
           ))}
         </div>
+      </div>
+      <div className="flex items-center justify-between p-4">
+        <div className="flex items-baseline gap-2">
+          <p className="font-heading text-xl">{venue.price} kr</p>
+          <p className="text-sm">/ night</p>
+        </div>
+        <Link
+          href={`/venues/${venue.id}`}
+          className="flex items-center gap-2 text-primary-100 hover:text-primary-hover"
+        >
+          view
+          <ArrowRight size={16} />
+        </Link>
       </div>
     </div>
   );
