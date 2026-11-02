@@ -1,6 +1,7 @@
 import { Inter, Lora } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/Header";
+import { Suspense } from "react";
+import Header, { HeaderFallback } from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
 const inter = Inter({
@@ -25,7 +26,9 @@ export default function RootLayout({ children }) {
       className={`${inter.variable} ${lora.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col font-sans">
-        <Header />
+        <Suspense fallback={<HeaderFallback />}>
+          <Header />
+        </Suspense>
         <div className="mx-auto w-full max-w-300 flex-1">{children}</div>
         <Footer />
       </body>

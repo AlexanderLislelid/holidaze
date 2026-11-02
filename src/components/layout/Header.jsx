@@ -8,6 +8,22 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import useAuthStore from "@/store/authStore";
 
+export function HeaderFallback() {
+  return (
+    <header className="mx-auto flex w-full max-w-300 items-center justify-between bg-white p-3">
+      <Link href="/">
+        <Image
+          src="/holidaze-logo-light-36px.svg"
+          alt="Holidaze"
+          width={150}
+          height={46}
+          preload
+        />
+      </Link>
+    </header>
+  );
+}
+
 export default function Header() {
   const user = useAuthStore((state) => state.user);
   const guest = !user;
