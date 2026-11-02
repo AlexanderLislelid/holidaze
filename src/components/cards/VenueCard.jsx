@@ -8,7 +8,7 @@ export default function VenueCard({ venue }) {
   );
 
   return (
-    <div className="m-4 max-w-75 overflow-hidden rounded-xl shadow-lg">
+    <div className="m-4 overflow-hidden rounded-xl shadow-lg">
       <div className="relative">
         <img
           src={image?.url || "https://placehold.co/400"}
