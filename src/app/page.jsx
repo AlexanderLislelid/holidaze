@@ -1,10 +1,13 @@
+import Hero from "@/components/layout/Hero";
 import Venues from "@/components/layout/Venues";
 
-export default function Home() {
+export default async function Home({ searchParams }) {
+  const { query } = await searchParams;
+
   return (
     <main>
-      <h1 className="text-4xl font-bold">Welcome to Holidaze</h1>
-      <Venues />
+      <Hero />
+      <Venues query={query} />
     </main>
   );
 }
