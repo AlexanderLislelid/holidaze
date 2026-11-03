@@ -1,6 +1,7 @@
 "use cache";
 import { apiRequest } from "@/lib/api";
 import VenueCard from "../cards/VenueCard";
+import SortButtons from "../buttons/SortButtons";
 
 export default async function Venues({
   query,
@@ -17,10 +18,13 @@ export default async function Venues({
   }
 
   return (
-    <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-      {data.map((venue) => (
-        <VenueCard key={venue.id} venue={venue} />
-      ))}
+    <div>
+      <SortButtons query={query} />
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {data.map((venue) => (
+          <VenueCard key={venue.id} venue={venue} />
+        ))}
+      </div>
     </div>
   );
 }
