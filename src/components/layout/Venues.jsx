@@ -8,12 +8,22 @@ export default async function Venues({
   query,
   sort = "created",
   sortOrder = "desc",
-  limit = "12",
+  page = "1",
 }) {
   const endpoint = query
-    ? `holidaze/venues/search?q=${encodeURIComponent(query)}&sort=${sort}&sortOrder=${sortOrder}&limit=${limit}`
-    : `holidaze/venues?sort=${sort}&sortOrder=${sortOrder}&limit=${limit}`;
-  const { data } = await apiRequest(endpoint);
+    ? `holidaze/venues/search?q=${encodeURIComponent(query)}&sort=${sort}&sortOrder=${sortOrder}&limit=12`
+    : `holidaze/venues?sort=${sort}&sortOrder=${sortOrder}&limit=12`;
+  const requests = [];
+  for (let p = 1; p <= Number(page); p++) {
+    requests.push(apiRequest(`${endpoint}&page=${p}`));
+  }
+  const results = await Promise.all(requests);
+  const allVenues = results.flatMap((result) => result.data);
+  const data = allVenues.filter(
+    (venue, index) => allVenues.findIndex((v) => v.id === venue.id) === index,
+  );
+
+  const meta = results.at(-1).meta;
 
   if (!data.length) {
     return <p>No venues found.</p>;
@@ -28,12 +38,14 @@ export default async function Venues({
           <VenueCard key={venue.id} venue={venue} />
         ))}
       </div>
-      <LoadMoreButton
-        query={query}
-        sort={sort}
-        sortOrder={sortOrder}
-        limit={limit}
-      />
+      {!meta.isLastPage && (
+        <LoadMoreButton
+          query={query}
+          sort={sort}
+          sortOrder={sortOrder}
+          page={page}
+        />
+      )}
     </div>
   );
 }
