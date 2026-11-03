@@ -1,15 +1,70 @@
 import { apiRequest } from "@/lib/api";
 import BreadCrumb from "@/components/navigation/BreadCrumb";
+import { Star, MapPin, UsersRound } from "lucide-react";
+import Image from "next/image";
 export default async function VenuePage({ params }) {
   const { id } = await params;
-  const { data: venue } = await apiRequest(`holidaze/venues/${id}`);
+  const { data: venue } = await apiRequest(
+    `holidaze/venues/${id}?_owner=true&_bookings=true`,
+  );
 
-  console.log(venue);
+  console.log(venue.bookings);
   return (
     <main>
       <BreadCrumb href="/" name="home" />
-      <h1>{venue.name}</h1>
-      <p>{venue.description}</p>
+      <div className="mx-4 mb-6 flex flex-col gap-2">
+        <h1 className="text-3xl font-semibold">{venue.name}</h1>
+        <div className="flex gap-6 text-sm">
+          <div className="flex gap-1">
+            <MapPin
+              size={18}
+              className="text-accent-100"
+              aria-label="Location"
+            />
+            <p>
+              {venue.location.address}, {venue.location.country}
+            </p>
+          </div>
+          <div className="flex gap-1">
+            <Star
+              size={18}
+              className="text-highlight-100"
+              aria-label="Rating"
+            />
+            <p>{venue.rating}</p>
+          </div>
+          <div className="flex gap-1">
+            <UsersRound
+              size={18}
+              className="text-secondary-100"
+              aria-label="Max guests"
+            />
+            <p>{venue.maxGuests}</p>
+          </div>
+        </div>
+      </div>
+      <div className="relative h-80 w-full">
+        <Image
+          src={venue.media[0]?.url}
+          alt={venue.media[0]?.alt || venue.name}
+          fill
+          className="object-cover"
+        />
+        {/* NOTE TO SELF: try adding an image gallery */}
+      </div>
+      <div className="m-4 flex items-end gap-4 border-b border-border pb-6">
+        <Image
+          src={venue.owner.avatar.url}
+          alt={venue.owner.avatar.alt || venue.name}
+          width={75}
+          height={75}
+          className="size-18.75 shrink-0 rounded-full object-cover"
+        />
+        <div className="">
+          <p className="text-sm text-muted-100">Hosted by</p>
+          <p className="font-medium text-text-90">{venue.owner.name}</p>
+        </div>
+      </div>
     </main>
   );
 }
