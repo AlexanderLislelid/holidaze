@@ -1,6 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Hotel, House, LogIn, Search, UserPlus } from "lucide-react";
+import {
+  ArrowRight,
+  Hotel,
+  House,
+  LogIn,
+  Search,
+  UserPlus,
+} from "lucide-react";
 export default function Footer() {
   return (
     <footer className="footer-gradient">
@@ -19,6 +26,18 @@ export default function Footer() {
             <p className="max-w-75 leading-relaxed text-background/80">
               Find and book places to stay, or list your own venue
             </p>
+            <Link
+              href="/register"
+              className="group inline-flex items-center gap-2 self-start rounded-full bg-linear-to-r from-highlight-100 to-accent-100 px-4 py-2 font-semibold text-text-100 shadow-md shadow-black/20 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent-100/30"
+            >
+              <House size={18} aria-hidden="true" />
+              Become a host
+              <ArrowRight
+                size={16}
+                aria-hidden="true"
+                className="transition-transform duration-200 group-hover:translate-x-1"
+              />
+            </Link>
             <hr className="my-2 border-t border-current opacity-15 sm:hidden" />
           </div>
           <div className="mt-6 flex gap-12 sm:mt-14">
