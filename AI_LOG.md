@@ -112,3 +112,21 @@ This file documents all use of AI tools in this project.
 - **Outcome:** Claude Code wrapped the Header in <Suspense> in the root layout with a HeaderFallback that only shows the logo, and added a loading.jsx. I chose to make it a global loader in src/app/loading.jsx. The build now passes.
 
 ---
+
+## 13. Sorting venues
+
+- **Tool used:** Claude Code (Anthropic)
+- **Date:** 3 November 2026
+- **Purpose:** Step by step hints on how to sort the venue list using the API's sort and sortOrder query parameters.
+- **Outcome:** Following the hints and explanations I managed to get a working solution
+
+---
+
+## 14. Sort dropdown bug
+
+- **Tool used:** Claude Code (Anthropic)
+- **Date:** 3 November 2026
+- **Purpose:** Debugging the sort dropdown in SortSelect.jsx. After sorting by highest price and then searching for "oslo", choosing "Highest price" again did nothing.
+- **Outcome:** Got an explanation of the bug and hints on how to fix it.
+
+---
