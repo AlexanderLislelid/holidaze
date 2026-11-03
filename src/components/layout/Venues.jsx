@@ -2,15 +2,17 @@
 import { apiRequest } from "@/lib/api";
 import VenueCard from "../cards/VenueCard";
 import SortSelect from "../buttons/SortSelect";
+import LoadMoreButton from "../buttons/LoadMoreButton";
 
 export default async function Venues({
   query,
   sort = "created",
   sortOrder = "desc",
+  limit = "12",
 }) {
   const endpoint = query
-    ? `holidaze/venues/search?q=${encodeURIComponent(query)}&sort=${sort}&sortOrder=${sortOrder}`
-    : `holidaze/venues?sort=${sort}&sortOrder=${sortOrder}`;
+    ? `holidaze/venues/search?q=${encodeURIComponent(query)}&sort=${sort}&sortOrder=${sortOrder}&limit=${limit}`
+    : `holidaze/venues?sort=${sort}&sortOrder=${sortOrder}&limit=${limit}`;
   const { data } = await apiRequest(endpoint);
 
   if (!data.length) {
@@ -26,6 +28,12 @@ export default async function Venues({
           <VenueCard key={venue.id} venue={venue} />
         ))}
       </div>
+      <LoadMoreButton
+        query={query}
+        sort={sort}
+        sortOrder={sortOrder}
+        limit={limit}
+      />
     </div>
   );
 }
