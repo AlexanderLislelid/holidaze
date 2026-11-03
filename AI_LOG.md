@@ -130,3 +130,12 @@ This file documents all use of AI tools in this project.
 - **Outcome:** Got an explanation of the bug and hints on how to fix it.
 
 ---
+
+## 15. Load more pagination
+
+- **Tool used:** Claude Code (Anthropic)
+- **Date:** 3 November 2026
+- **Purpose:** My "Load more" solution used limit, which broke at 100 venues because of the API's max limit.
+- **Outcome:** Got help switching to page-based pagination, and hints on fetching all pages with Promise.all
+
+---
