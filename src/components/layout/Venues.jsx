@@ -38,14 +38,16 @@ export default async function Venues({
           <VenueCard key={venue.id} venue={venue} />
         ))}
       </div>
-      {!meta.isLastPage && (
-        <LoadMoreButton
-          query={query}
-          sort={sort}
-          sortOrder={sortOrder}
-          page={page}
-        />
-      )}
+      <div className="my-12 flex justify-center">
+        {!meta.isLastPage && (
+          <LoadMoreButton
+            query={query}
+            sort={sort}
+            sortOrder={sortOrder}
+            page={page}
+          />
+        )}
+      </div>
     </div>
   );
 }
