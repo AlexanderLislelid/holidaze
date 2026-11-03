@@ -19,7 +19,8 @@ export default async function Venues({
 
   return (
     <div>
-      <SortSelect query={query} />
+      <SortSelect query={query} sort={sort} sortOrder={sortOrder} />
+
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {data.map((venue) => (
           <VenueCard key={venue.id} venue={venue} />
