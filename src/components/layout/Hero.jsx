@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="grid items-center gap-8 md:grid-cols-2 md:p-4">
+    <section className="grid items-center gap-8 bg-white md:grid-cols-2 md:p-4">
       <Image
         src="/img/hero.jpg"
         alt="tropical island with bridge access"
