@@ -2,7 +2,7 @@
 import { apiRequest } from "@/lib/api";
 import VenueCard from "../cards/VenueCard";
 
-export default async function Venues({ query }) {
+export default async function Venues({ query, sort, sortOrder }) {
   const endpoint = query
     ? `holidaze/venues/search?q=${encodeURIComponent(query)}`
     : "holidaze/venues";
@@ -11,6 +11,7 @@ export default async function Venues({ query }) {
   if (!data.length) {
     return <p>No venues found.</p>;
   }
+  console.log(sort, sortOrder);
 
   return (
     <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

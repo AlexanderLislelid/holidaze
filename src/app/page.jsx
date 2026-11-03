@@ -3,13 +3,13 @@ import Venues from "@/components/layout/Venues";
 import HowItWorks from "@/components/layout/HowItWorks";
 
 export default async function Home({ searchParams }) {
-  const { query, sort } = await searchParams;
+  const { query, sort, sortOrder } = await searchParams;
 
   return (
     <main>
       <Hero />
       <HowItWorks />
-      <Venues query={query} sort={sort} />
+      <Venues query={query} sort={sort} sortOrder={sortOrder} />
     </main>
   );
 }
