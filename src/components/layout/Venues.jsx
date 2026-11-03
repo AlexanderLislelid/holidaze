@@ -30,7 +30,13 @@ export default async function Venues({
   }
 
   return (
-    <div>
+    <div className="mt-12">
+      <h2 className="mx-4 my-1 text-2xl font-medium text-text-80">
+        Places to stay
+      </h2>
+      <p className="mx-4 mb-8 text-sm text-muted-100">
+        Hand-picked cabins, apartments and hideaways, ready to book.
+      </p>
       <SortSelect query={query} sort={sort} sortOrder={sortOrder} />
 
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
