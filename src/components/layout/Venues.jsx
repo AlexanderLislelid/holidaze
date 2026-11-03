@@ -1,4 +1,3 @@
-"use cache";
 import { apiRequest } from "@/lib/api";
 import VenueCard from "../cards/VenueCard";
 import SortSelect from "../buttons/SortSelect";
