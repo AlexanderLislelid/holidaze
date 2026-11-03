@@ -139,3 +139,12 @@ This file documents all use of AI tools in this project.
 - **Outcome:** Got help switching to page-based pagination, and hints on fetching all pages with Promise.all
 
 ---
+
+## 16. Debugging cache error
+
+- **Tool used:** Claude Code (Anthropic)
+- **Date:** 3 November 2026
+- **Purpose:** Asked for a global fix for an "uncached data" error, so I wouldn't need Suspense everywhere.
+- **Outcome:** Turned off Cache Components in next.config and removed "use cache" from Venues.jsx.
+
+---
