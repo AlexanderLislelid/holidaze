@@ -9,14 +9,17 @@ export default function VenueCard({ venue }) {
   );
 
   return (
-    <div className="m-4 overflow-hidden rounded-xl bg-white shadow-lg">
+    <Link
+      href={`/venues/${venue.id}`}
+      className="group m-4 block overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-200 hover:-translate-y-1 hover:shadow-xl"
+    >
       <div className="relative h-48">
         <Image
           src={image?.url || "https://placehold.co/400.png"}
           alt={image?.alt || venue.name}
           fill
           sizes="(min-width: 640px) 50vw, 100vw"
-          className="rounded-t-xl object-cover"
+          className="rounded-t-xl object-cover transition-transform duration-300 group-hover:scale-105"
         />
         {venue.rating ? (
           <span className="absolute top-2 left-2 inline-flex items-center gap-1 rounded-full bg-warning-bg px-2 py-0.5 text-sm font-medium text-warning-text shadow-md">
@@ -60,14 +63,17 @@ export default function VenueCard({ venue }) {
           <p className="font-heading text-xl">{venue.price} kr</p>
           <p className="text-sm">/ night</p>
         </div>
-        <Link
-          href={`/venues/${venue.id}`}
-          className="flex items-center gap-2 text-primary-100 hover:text-primary-hover"
+        <span
+          aria-hidden="true"
+          className="flex items-center gap-2 text-primary-100 group-hover:text-primary-hover"
         >
-          view
-          <ArrowRight size={16} />
-        </Link>
+          View
+          <ArrowRight
+            size={16}
+            className="transition-transform duration-200 group-hover:translate-x-1"
+          />
+        </span>
       </div>
-    </div>
+    </Link>
   );
 }
