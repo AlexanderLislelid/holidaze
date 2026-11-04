@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import useAuthStore from "@/store/authStore";
 import { useRouter } from "next/navigation";
 import FormInput from "../inputs/FormInput";
+import { LogIn } from "lucide-react";
 
 export default function LoginForm() {
   const login = useAuthStore((state) => state.login);
@@ -41,6 +42,10 @@ export default function LoginForm() {
       onSubmit={handleSubmit(onSubmit)}
       className="flex max-w-125 flex-col gap-6 bg-white px-12 py-6"
     >
+      <div>
+        <img src="/holidaze-logo-light-36px.svg" alt="holidaze logo" />
+        <h1 className="text-2xl font-medium">Log in to your account</h1>
+      </div>
       <FormInput
         label="Email"
         name="email"
@@ -61,8 +66,16 @@ export default function LoginForm() {
 
       {errors.root && <p>{errors.root.message}</p>}
 
-      <button type="submit" disabled={isSubmitting}>
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className="group flex items-center justify-center gap-2 rounded-lg bg-primary-100 p-2 font-medium text-white hover:bg-primary-hover"
+      >
         {isSubmitting ? "Logging in" : "Log in"}
+        <LogIn
+          size={18}
+          className="transition duration-200 group-hover:translate-x-1"
+        />
       </button>
     </form>
   );
