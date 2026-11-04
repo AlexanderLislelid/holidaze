@@ -7,6 +7,7 @@ import useAuthStore from "@/store/authStore";
 import { useRouter } from "next/navigation";
 import FormInput from "../inputs/FormInput";
 import { LogIn } from "lucide-react";
+import Link from "next/link";
 
 export default function LoginForm() {
   const login = useAuthStore((state) => state.login);
@@ -40,7 +41,7 @@ export default function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex max-w-125 flex-col gap-6 bg-white px-12 py-6"
+      className="flex w-full flex-col gap-6 bg-white px-12 py-6 md:max-w-125 md:rounded-r-xl"
     >
       <div>
         <img src="/holidaze-logo-light-36px.svg" alt="holidaze logo" />
@@ -69,7 +70,7 @@ export default function LoginForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="group flex items-center justify-center gap-2 rounded-lg bg-primary-100 p-2 font-medium text-white hover:bg-primary-hover"
+        className="group mt-6 flex items-center justify-center gap-2 rounded-lg bg-primary-100 p-2 font-medium text-white hover:bg-primary-hover"
       >
         {isSubmitting ? "Logging in" : "Log in"}
         <LogIn
@@ -77,6 +78,15 @@ export default function LoginForm() {
           className="transition duration-200 group-hover:translate-x-1"
         />
       </button>
+      <div className="flex flex-col items-center">
+        <p className="text-sm text-muted-100">No account yet?</p>
+        <Link
+          href={"/register"}
+          className="text-primary-100 hover:font-medium hover:text-primary-hover"
+        >
+          Register
+        </Link>
+      </div>
     </form>
   );
 }
