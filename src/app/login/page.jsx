@@ -1,7 +1,11 @@
+import LoginForm from "@/components/forms/LoginForm";
+import BreadCrumb from "@/components/navigation/BreadCrumb";
+
 export default function Login() {
   return (
-    <div>
-      <h1>Log in</h1>
-    </div>
+    <main>
+      <BreadCrumb href={"/"} name={"home"} />
+      <LoginForm />
+    </main>
   );
 }
