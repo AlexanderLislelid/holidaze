@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useAuthStore from "@/store/authStore";
 import { useRouter } from "next/navigation";
+import FormInput from "../inputs/FormInput";
 
 export default function LoginForm() {
   const login = useAuthStore((state) => state.login);
@@ -36,12 +37,27 @@ export default function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input type="email" {...register("email")} />
-      {errors.email && <p>{errors.email.message}</p>}
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex max-w-125 flex-col gap-6 bg-white px-12 py-6"
+    >
+      <FormInput
+        label="Email"
+        name="email"
+        type="email"
+        placeholder="example@stud.noroff.no"
+        register={register}
+        error={errors.email}
+      />
 
-      <input type="password" {...register("password")} />
-      {errors.password && <p>{errors.password.message}</p>}
+      <FormInput
+        label="Password"
+        name="password"
+        type="password"
+        placeholder="Your password"
+        register={register}
+        error={errors.password}
+      />
 
       {errors.root && <p>{errors.root.message}</p>}
 
