@@ -32,7 +32,7 @@ export default function LoginForm() {
 
       const { accessToken, ...user } = data;
       login(user, accessToken);
-      router.push("/");
+      router.push("/profile");
     } catch (error) {
       setError("root", { message: error.message });
     }
