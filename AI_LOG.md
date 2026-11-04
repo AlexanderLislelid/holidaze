@@ -148,3 +148,12 @@ This file documents all use of AI tools in this project.
 - **Outcome:** Turned off Cache Components in next.config and removed "use cache" from Venues.jsx.
 
 ---
+
+## 17. Code review of LoginForm
+
+- **Tool used:** Claude Code (Anthropic)
+- **Date:** 4 November 2026
+- **Purpose:** Code review of my LoginForm.jsx (react-hook-form + zod). Asked it to find errors and suggest how to save the logged-in user with useAuthStore.
+- **Outcome:** Got feedback on syntax errors and a missing "use client". Also got hints on saving the user and token with login() from useAuthStore, adding ?\_holidaze=true to get venueManager, and showing API errors with setError("root"). I fixed the issues myself, and the form now saves the user in the store.
+
+---
