@@ -3,6 +3,7 @@ import BreadCrumb from "@/components/navigation/BreadCrumb";
 import { Star, MapPin, UsersRound } from "lucide-react";
 import Image from "next/image";
 import VenueTags from "@/components/venues/VenueTags";
+import VenueMap from "@/components/venues/VenueMap";
 export default async function VenuePage({ params }) {
   const { id } = await params;
   const { data: venue } = await apiRequest(
@@ -75,6 +76,11 @@ export default async function VenuePage({ params }) {
           <h2 className="my-4 font-sans text-xl">What this place offers</h2>
           <VenueTags tags={venue.meta} />
         </div>
+        <VenueMap
+          lat={venue.location.lat}
+          lng={venue.location.lng}
+          name={venue.location.address}
+        />
       </div>
     </main>
   );
