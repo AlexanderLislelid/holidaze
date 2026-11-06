@@ -2,13 +2,14 @@ import { apiRequest } from "@/lib/api";
 import BreadCrumb from "@/components/navigation/BreadCrumb";
 import { Star, MapPin, UsersRound } from "lucide-react";
 import Image from "next/image";
+import VenueTags from "@/components/venues/VenueTags";
 export default async function VenuePage({ params }) {
   const { id } = await params;
   const { data: venue } = await apiRequest(
     `holidaze/venues/${id}?_owner=true&_bookings=true`,
   );
 
-  console.log(venue.bookings);
+  console.log(venue);
   return (
     <main>
       <BreadCrumb href="/" name="home" />
@@ -63,6 +64,16 @@ export default async function VenuePage({ params }) {
         <div className="">
           <p className="text-sm text-muted-100">Hosted by</p>
           <p className="font-medium text-text-90">{venue.owner.name}</p>
+        </div>
+      </div>
+      <div>
+        <div>
+          <h2>About this place</h2>
+          <p>{venue.description}</p>
+        </div>
+        <div>
+          <h2>What this place offers</h2>
+          <VenueTags tags={venue.meta} />
         </div>
       </div>
     </main>
