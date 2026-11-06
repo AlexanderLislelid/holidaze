@@ -12,7 +12,7 @@ export default function Login() {
           width={550}
           height={550}
           alt="an idyllic beach"
-          sizes="(min-width: 768px) 50vw, 100vw"
+          sizes="100vw"
           className="h-56 w-full object-cover sm:h-72 md:h-auto md:w-1/2 md:rounded-l-xl"
         />
         <LoginForm />
