@@ -30,6 +30,7 @@ export const registerSchema = z
     email,
     password,
     confirmPassword,
+    venueManager: z.boolean(),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords do not match",
