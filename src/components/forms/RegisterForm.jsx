@@ -87,13 +87,14 @@ export default function RegisterForm() {
         error={errors.confirmPassword}
       />
 
+      {/* TODO: swap this checkbox with a nicer looking toggle according to my figma design */}
       <label className="flex items-center gap-2 text-sm text-text-80">
         <input
           type="checkbox"
           {...register("venueManager")}
-          className="size-4 accent-primary-100"
+          className="accent-primary-100-md size-4"
         />
-        I want to register as a venue manager
+        I want to rent out venues
       </label>
 
       {errors.root && <p>{errors.root.message}</p>}
