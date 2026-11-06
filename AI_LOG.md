@@ -157,3 +157,12 @@ This file documents all use of AI tools in this project.
 - **Outcome:** Got feedback on syntax errors and a missing "use client". Also got hints on saving the user and token with login() from useAuthStore, adding ?\_holidaze=true to get venueManager, and showing API errors with setError("root"). I fixed the issues myself, and the form now saves the user in the store.
 
 ---
+
+## 18. Venue map
+
+- **Tool used:** Claude Code (Anthropic)
+- **Date:** 6 November 2026
+- **Purpose:** Asked for alternatives to Google Maps for showing a venue's location, and help implementing OpenStreetMap in VenueMap.jsx.
+- **Outcome:** Got a starting point for the component and an explanation of the map URL: "bbox" decides which area the map shows (west, south, east, north) and "offset" controls the zoom level. Also got help understanding an error: "Invalid uuid" (I wrote src="src" instead of src={src}, so the iframe loaded /venues/src).
+
+---
