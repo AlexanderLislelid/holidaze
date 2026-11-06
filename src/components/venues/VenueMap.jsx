@@ -1,6 +1,6 @@
 export default function VenueMap({ lat, lng, name }) {
   if (!lat || !lng) {
-    return <p>No map available</p>;
+    return null;
   }
 
   const offset = 0.003;

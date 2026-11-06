@@ -76,11 +76,13 @@ export default async function VenuePage({ params }) {
           <h2 className="my-4 font-sans text-xl">What this place offers</h2>
           <VenueTags tags={venue.meta} />
         </div>
-        <VenueMap
-          lat={venue.location.lat}
-          lng={venue.location.lng}
-          name={venue.location.address}
-        />
+        <div className="my-12">
+          <VenueMap
+            lat={venue.location.lat}
+            lng={venue.location.lng}
+            name={venue.location.address}
+          />
+        </div>
       </div>
     </main>
   );
