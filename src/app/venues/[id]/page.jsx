@@ -66,13 +66,13 @@ export default async function VenuePage({ params }) {
           <p className="font-medium text-text-90">{venue.owner.name}</p>
         </div>
       </div>
-      <div>
+      <div className="flex flex-col gap-2 p-4">
         <div>
-          <h2>About this place</h2>
-          <p>{venue.description}</p>
+          <h2 className="font-sans text-xl">About this place</h2>
+          <p className="mt-2 font-light text-text-90">{venue.description}</p>
         </div>
         <div>
-          <h2>What this place offers</h2>
+          <h2 className="my-4 font-sans text-xl">What this place offers</h2>
           <VenueTags tags={venue.meta} />
         </div>
       </div>
