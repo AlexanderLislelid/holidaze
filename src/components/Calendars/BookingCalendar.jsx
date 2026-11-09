@@ -1,25 +1,20 @@
 "use client";
 
-import { useState } from "react";
 import { DayPicker } from "@daypicker/react";
 import "@daypicker/react/style.css";
 
-export default function BookingCalendar({ bookings = [] }) {
-  const [selected, setSelected] = useState();
-
+export default function BookingCalendar({ bookings = [], selected, onSelect }) {
   const bookedRanges = bookings.map((b) => ({
     from: new Date(b.dateFrom),
     to: new Date(b.dateTo),
   }));
-
-  console.log(bookedRanges);
 
   return (
     <DayPicker
       animate
       mode="range"
       selected={selected}
-      onSelect={setSelected}
+      onSelect={onSelect}
       disabled={[{ before: new Date() }, ...bookedRanges]}
       excludeDisabled
       footer={

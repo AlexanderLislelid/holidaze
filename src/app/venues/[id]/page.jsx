@@ -4,7 +4,7 @@ import { Star, MapPin, UsersRound } from "lucide-react";
 import Image from "next/image";
 import VenueTags from "@/components/venues/VenueTags";
 import VenueMap from "@/components/venues/VenueMap";
-import BookingCalendar from "@/components/Calendars/BookingCalendar";
+import BookingForm from "@/components/forms/BookingForm";
 export default async function VenuePage({ params }) {
   const { id } = await params;
   const { data: venue } = await apiRequest(
@@ -85,7 +85,7 @@ export default async function VenuePage({ params }) {
           />
         </div>
       </div>
-      <BookingCalendar bookings={venue.bookings ?? []} />
+      <BookingForm bookings={venue.bookings ?? []} price={venue.price} />
     </main>
   );
 }
