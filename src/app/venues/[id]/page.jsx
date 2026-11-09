@@ -5,6 +5,7 @@ import Image from "next/image";
 import VenueTags from "@/components/venues/VenueTags";
 import VenueMap from "@/components/venues/VenueMap";
 import BookingForm from "@/components/forms/BookingForm";
+import ImageCarousel from "@/components/venues/ImageCarousel";
 export default async function VenuePage({ params }) {
   const { id } = await params;
   const { data: venue } = await apiRequest(
@@ -46,13 +47,7 @@ export default async function VenuePage({ params }) {
         </div>
       </div>
       <div className="relative h-80 w-full">
-        <Image
-          src={venue.media[0]?.url}
-          alt={venue.media[0]?.alt || venue.name}
-          fill
-          className="object-cover"
-        />
-        {/* NOTE TO SELF: try adding an image gallery */}
+        <ImageCarousel images={venue.media} altText={venue.name} />
       </div>
       <div className="m-4 flex items-end gap-4 border-b border-border pb-6">
         <Image
