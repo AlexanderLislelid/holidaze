@@ -69,13 +69,14 @@ export default async function VenuePage({ params }) {
         </div>
       </div>
       <div className="flex flex-col gap-2 p-4">
-        <div>
-          <h2 className="font-sans text-xl">About this place</h2>
-          <p className="mt-2 font-light text-text-90">{venue.description}</p>
-        </div>
-        <div>
-          <h2 className="my-4 font-sans text-xl">What this place offers</h2>
-          <VenueTags tags={venue.meta} />
+        <div className="justify-between md:flex">
+          <div className="py-6 md:pr-6">
+            <h2 className="font-sans text-xl">About this place</h2>
+            <p className="mt-2 font-light text-text-90">{venue.description}</p>
+            <h2 className="my-4 font-sans text-xl">What this place offers</h2>
+            <VenueTags tags={venue.meta} />
+          </div>
+          <BookingForm bookings={venue.bookings ?? []} price={venue.price} />
         </div>
         <div className="my-12">
           <VenueMap
@@ -85,7 +86,6 @@ export default async function VenuePage({ params }) {
           />
         </div>
       </div>
-      <BookingForm bookings={venue.bookings ?? []} price={venue.price} />
     </main>
   );
 }
