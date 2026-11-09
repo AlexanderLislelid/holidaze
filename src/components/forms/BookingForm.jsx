@@ -7,18 +7,21 @@ import SelectInput from "../inputs/SelectInput";
 import { differenceInCalendarDays } from "date-fns";
 import { apiRequest } from "@/lib/api";
 import { useRouter } from "next/navigation";
+import SuccessToast from "../toasts/SuccessToast";
 
 export default function BookingForm({
   bookings = [],
   price,
   maxGuests = 1,
   venueId,
+  venueName,
 }) {
   const [selected, setSelected] = useState();
   const [guests, setGuests] = useState(1);
   const accessToken = useAuthStore((state) => state.accessToken);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showToast, setShowToast] = useState(false);
   const router = useRouter();
 
   const guestOptions = Array.from({ length: maxGuests }, (_, i) => ({
@@ -48,6 +51,8 @@ export default function BookingForm({
           venueId,
         },
       });
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 5000);
       setSelected(undefined);
       router.refresh();
     } catch (error) {
@@ -98,6 +103,9 @@ export default function BookingForm({
       <button type="submit" disabled={isLoading || nights < 1}>
         {isLoading ? "Booking..." : "Book now"}
       </button>
+      {showToast && (
+        <SuccessToast message={`Successfully booked ${venueName}`} />
+      )}
     </form>
   ) : (
     <p>Please log in to book</p>

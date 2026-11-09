@@ -81,6 +81,7 @@ export default async function VenuePage({ params }) {
             price={venue.price}
             maxGuests={venue.maxGuests}
             venueId={venue.id}
+            venueName={venue.name}
           />
         </div>
         <div className="my-12">
