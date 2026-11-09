@@ -14,7 +14,11 @@ export default function BookingCalendar() {
       selected={selected}
       onSelect={setSelected}
       disabled={{ before: new Date() }}
-      footer={`${selected.from.toLocaleDateString()} - ${selected.to.toLocaleDateString()}`}
+      footer={
+        selected?.from && selected?.to
+          ? `${selected.from.toLocaleDateString()} - ${selected.to.toLocaleDateString()}`
+          : "Pick check-in and check-out dates"
+      }
     />
   );
 }
