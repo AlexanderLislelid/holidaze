@@ -150,3 +150,40 @@
     @apply text-background/80 transition-colors hover:font-normal hover:text-white;
   }
 }
+
+/* Booking calendar  */
+.rdp-root.booking-calendar {
+  /* Main color: selected dates, today, border */
+  --rdp-accent-color: var(--color-primary-100);
+  --rdp-accent-background-color: var(--color-primary-10);
+
+  /* Dates between check-in and check-out */
+  --rdp-range_middle-background-color: var(--color-primary-20);
+  --rdp-range_middle-color: var(--color-text-100);
+
+  /* Check-in and check-out dates */
+  --rdp-range_start-date-background-color: var(--color-primary-100);
+  --rdp-range_end-date-background-color: var(--color-primary-100);
+  --rdp-range_start-color: white;
+  --rdp-range_end-color: white;
+
+  /* Today's date */
+  --rdp-today-color: white;
+
+  /* Disabled dates (past and already booked) */
+  --rdp-disabled-opacity: 0.35;
+
+  /* Size and shape */
+  --rdp-day-width: 40px;
+  --rdp-day-height: 40px;
+  --rdp-day_button-width: 38px;
+  --rdp-day_button-height: 38px;
+  --rdp-day_button-border-radius: 8px;
+}
+
+/* Orange background on today's date (unless it is selected) */
+.booking-calendar
+  .rdp-today:not(.rdp-outside):not(.rdp-selected)
+  .rdp-day_button {
+  background-color: var(--color-accent-100);
+}

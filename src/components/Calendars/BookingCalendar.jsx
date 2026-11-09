@@ -11,6 +11,7 @@ export default function BookingCalendar({ bookings = [], selected, onSelect }) {
 
   return (
     <DayPicker
+      className="booking-calendar"
       animate
       mode="range"
       selected={selected}
@@ -18,9 +19,13 @@ export default function BookingCalendar({ bookings = [], selected, onSelect }) {
       disabled={[{ before: new Date() }, ...bookedRanges]}
       excludeDisabled
       footer={
-        selected?.from && selected?.to
-          ? `${selected.from.toLocaleDateString()} - ${selected.to.toLocaleDateString()}`
-          : "Pick check-in and check-out dates"
+        selected?.from && selected?.to ? (
+          `${selected.from.toLocaleDateString()} - ${selected.to.toLocaleDateString()}`
+        ) : (
+          <p className="mt-3 text-sm text-gray-500">
+            Pick check-in and check-out dates
+          </p>
+        )
       }
     />
   );

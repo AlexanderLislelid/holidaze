@@ -83,7 +83,7 @@ export default function BookingForm({
         </div>
         <div className="flex gap-2">
           <span className="flex items-center justify-center rounded bg-accent-100 p-3"></span>
-          <p>Booked</p>
+          <p>Today</p>
         </div>
       </div>
       <SelectInput
