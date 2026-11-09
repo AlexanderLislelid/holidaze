@@ -80,6 +80,7 @@ export default async function VenuePage({ params }) {
             bookings={venue.bookings ?? []}
             price={venue.price}
             maxGuests={venue.maxGuests}
+            venueId={venue.id}
           />
         </div>
         <div className="my-12">
