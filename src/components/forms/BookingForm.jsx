@@ -6,6 +6,7 @@ import BookingCalendar from "../Calendars/BookingCalendar";
 import SelectInput from "../inputs/SelectInput";
 import { differenceInCalendarDays } from "date-fns";
 import { apiRequest } from "@/lib/api";
+import { useRouter } from "next/navigation";
 
 export default function BookingForm({
   bookings = [],
@@ -18,6 +19,7 @@ export default function BookingForm({
   const accessToken = useAuthStore((state) => state.accessToken);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const guestOptions = Array.from({ length: maxGuests }, (_, i) => ({
     value: i + 1,
@@ -46,6 +48,8 @@ export default function BookingForm({
           venueId,
         },
       });
+      setSelected(undefined);
+      router.refresh();
     } catch (error) {
       setError(error.message);
     } finally {
