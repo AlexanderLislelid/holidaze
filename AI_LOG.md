@@ -166,3 +166,12 @@ This file documents all use of AI tools in this project.
 - **Outcome:** Got a starting point for the component and an explanation of the map URL: "bbox" decides which area the map shows (west, south, east, north) and "offset" controls the zoom level. Also got help understanding an error: "Invalid uuid" (I wrote src="src" instead of src={src}, so the iframe loaded /venues/src).
 
 ---
+
+## 19. Guest options in BookingForm
+
+- **Tool used:** Claude Code (Anthropic)
+- **Date:** 9 November 2026
+- **Purpose:** My guests select had hardcoded options that did not respect each venues maxGuests. Asked for guidance with generating the options and making a reusable select component and a basic JSDoc comment on how to use.
+- **Outcome:** I got an explanation of how Array.from() works and why the options should be based on maxGuests instead of being hardcoded. it also generated a JSDoc comment for the new SelectInput component that I could edit
+
+---
