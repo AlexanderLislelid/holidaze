@@ -11,7 +11,6 @@ export default async function VenuePage({ params }) {
     `holidaze/venues/${id}?_owner=true&_bookings=true`,
   );
 
-  console.log(venue.bookings);
   return (
     <main>
       <BreadCrumb href="/" name="home" />
