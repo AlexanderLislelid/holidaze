@@ -76,7 +76,11 @@ export default async function VenuePage({ params }) {
             <h2 className="my-4 font-sans text-xl">What this place offers</h2>
             <VenueTags tags={venue.meta} />
           </div>
-          <BookingForm bookings={venue.bookings ?? []} price={venue.price} />
+          <BookingForm
+            bookings={venue.bookings ?? []}
+            price={venue.price}
+            maxGuests={venue.maxGuests}
+          />
         </div>
         <div className="my-12">
           <VenueMap
