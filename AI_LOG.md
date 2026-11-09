@@ -184,3 +184,12 @@ This file documents all use of AI tools in this project.
 - **Outcome:** Got a CSS rule for an orange background on todays date
 
 ---
+
+## 21. Dot indicators in the image carousel (Embla)
+
+- **Tool used:** Claude Code (Anthropic)
+- **Date:** 9 November 2026
+- **Purpose:** Asked how the dot indicators in ImageCarousel.jsx work.
+- **Outcome:** Learned how map() renders one dot per image, how clicking a dot calls scrollTo(index), and how selectedIndex marks the active dot.
+
+---
