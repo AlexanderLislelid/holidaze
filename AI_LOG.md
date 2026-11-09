@@ -175,3 +175,12 @@ This file documents all use of AI tools in this project.
 - **Outcome:** I got an explanation of how Array.from() works and why the options should be based on maxGuests instead of being hardcoded. it also generated a JSDoc comment for the new SelectInput component that I could edit
 
 ---
+
+## 20. Styling the booking calendar
+
+- **Tool used:** Claude Code (Anthropic)
+- **Date:** 9 November 2026
+- **Purpose:** Asked how to change the background color on todays date in the calendar as I could not find the variable name on `https://daypicker.dev/docs/styling`
+- **Outcome:** Got a CSS rule for an orange background on todays date
+
+---
