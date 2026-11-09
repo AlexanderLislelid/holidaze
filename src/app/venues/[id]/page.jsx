@@ -4,14 +4,14 @@ import { Star, MapPin, UsersRound } from "lucide-react";
 import Image from "next/image";
 import VenueTags from "@/components/venues/VenueTags";
 import VenueMap from "@/components/venues/VenueMap";
-import BookingForm from "@/components/forms/BookingForm";
+import BookingCalendar from "@/components/Calendars/BookingCalendar";
 export default async function VenuePage({ params }) {
   const { id } = await params;
   const { data: venue } = await apiRequest(
     `holidaze/venues/${id}?_owner=true&_bookings=true`,
   );
 
-  console.log(venue);
+  console.log(venue.bookings);
   return (
     <main>
       <BreadCrumb href="/" name="home" />
@@ -85,7 +85,7 @@ export default async function VenuePage({ params }) {
           />
         </div>
       </div>
-      <BookingForm />
+      <BookingCalendar bookings={venue.bookings ?? []} />
     </main>
   );
 }

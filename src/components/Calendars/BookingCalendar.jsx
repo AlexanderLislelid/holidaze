@@ -4,8 +4,15 @@ import { useState } from "react";
 import { DayPicker } from "@daypicker/react";
 import "@daypicker/react/style.css";
 
-export default function BookingCalendar() {
+export default function BookingCalendar({ bookings = [] }) {
   const [selected, setSelected] = useState();
+
+  const bookedRanges = bookings.map((b) => ({
+    from: new Date(b.dateFrom),
+    to: new Date(b.dateTo),
+  }));
+
+  console.log(bookedRanges);
 
   return (
     <DayPicker
@@ -13,7 +20,8 @@ export default function BookingCalendar() {
       mode="range"
       selected={selected}
       onSelect={setSelected}
-      disabled={{ before: new Date() }}
+      disabled={[{ before: new Date() }, ...bookedRanges]}
+      excludeDisabled
       footer={
         selected?.from && selected?.to
           ? `${selected.from.toLocaleDateString()} - ${selected.to.toLocaleDateString()}`
