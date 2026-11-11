@@ -193,3 +193,12 @@ This file documents all use of AI tools in this project.
 - **Outcome:** Learned how map() renders one dot per image, how clicking a dot calls scrollTo(index), and how selectedIndex marks the active dot.
 
 ---
+
+## 22. Fixing profile page bug
+
+- **Tool used:** Claude Code (Anthropic)
+- **Date:** 11 November 2026
+- **Purpose:** The profile page crashed with "Cannot read properties of null (reading 'banner')". Asked for explanation.
+- **Outcome:** was explained that the page crashed because it is also rendered on the server, where there is no localStorage, so user from the Zustand store is null. claude suggested a mounted state that becomes true in a useEffect, so the page only reads the user once it runs in the browser.
+
+---
