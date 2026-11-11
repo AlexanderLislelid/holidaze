@@ -35,32 +35,34 @@ export default function ImageCarousel({ images = [], altText = "" }) {
           ))}
         </div>
       </div>
-
-      <button
-        onClick={() => emblaApi?.scrollPrev()}
-        className="absolute top-0 flex h-full transform items-center px-2 text-white transition duration-400 hover:bg-black/40"
-      >
-        <ChevronLeft size={30} />
-      </button>
-      <button
-        onClick={() => emblaApi?.scrollNext()}
-        className="absolute top-0 right-0 flex h-full transform items-center px-2 text-white transition duration-400 hover:bg-black/40"
-      >
-        <ChevronRight size={30} />
-      </button>
-
-      <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 gap-2 rounded-full bg-secondary-100/20 p-2">
-        {images.map((_, index) => (
+      {images.length > 1 && (
+        <>
           <button
-            key={index}
-            onClick={() => emblaApi?.scrollTo(index)}
-            aria-label={`Gå til bilete ${index + 1}`}
-            className={`size-2.5 rounded-full ${
-              index === selectedIndex ? "bg-white px-3" : "bg-white/60"
-            }`}
-          />
-        ))}
-      </div>
+            onClick={() => emblaApi?.scrollPrev()}
+            className="absolute top-0 flex h-full transform items-center px-2 text-white transition duration-400 hover:bg-black/40"
+          >
+            <ChevronLeft size={30} />
+          </button>
+          <button
+            onClick={() => emblaApi?.scrollNext()}
+            className="absolute top-0 right-0 flex h-full transform items-center px-2 text-white transition duration-400 hover:bg-black/40"
+          >
+            <ChevronRight size={30} />
+          </button>
+
+          <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 gap-2 rounded-full bg-secondary-100/20 p-2">
+            {images.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => emblaApi?.scrollTo(index)}
+                className={`size-2.5 rounded-full ${
+                  index === selectedIndex ? "bg-white px-3" : "bg-white/60"
+                }`}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 }
