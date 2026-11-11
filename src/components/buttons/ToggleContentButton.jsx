@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import UserBookings from "../profile/UserBookings";
+import UserVenues from "../profile/UserVenues";
 
 export default function ToggleContentButton() {
   const [activeContent, setActiveContent] = useState("bookings");
@@ -30,12 +32,8 @@ export default function ToggleContentButton() {
         </button>
       </div>
 
-      {activeContent === "bookings" && (
-        <p>Bookings innhold her . hugs annar layout på mobil</p>
-      )}
-      {activeContent === "venues" && (
-        <p>venues innhold her . hugs annar layout på mobil</p>
-      )}
+      {activeContent === "bookings" && <UserBookings />}
+      {activeContent === "venues" && <UserVenues />}
     </div>
   );
 }
