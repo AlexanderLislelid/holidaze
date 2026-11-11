@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import useAuthStore from "@/store/authStore";
-import BookingCalendar from "../Calendars/BookingCalendar";
+import BookingCalendar from "../calendars/BookingCalendar";
 import SelectInput from "../inputs/SelectInput";
 import { differenceInCalendarDays } from "date-fns";
 import { apiRequest } from "@/lib/api";
