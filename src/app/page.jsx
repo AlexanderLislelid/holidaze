@@ -8,7 +8,7 @@ export default async function Home({ searchParams }) {
   return (
     <main>
       <Hero />
-      <HowItWorks />
+      {!query && <HowItWorks />}
       <Venues query={query} sort={sort} sortOrder={sortOrder} page={page} />
     </main>
   );
