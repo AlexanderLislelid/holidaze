@@ -39,7 +39,7 @@ const userLinks = [
     icon: UserRound,
   },
   {
-    href: "/#",
+    href: "/profile/bookings",
     label: "My bookings",
     icon: Calendar,
   },
@@ -52,17 +52,17 @@ const venueManagerLinks = [
     icon: UserRound,
   },
   {
-    href: "/#",
+    href: "/profile/venues",
     label: "My venues",
     icon: House,
   },
   {
-    href: "/#",
+    href: "/profile/create-venue",
     label: "Create venue",
     icon: HousePlus,
   },
   {
-    href: "/#",
+    href: "/profile/bookings",
     label: "My bookings",
     icon: Calendar,
   },
