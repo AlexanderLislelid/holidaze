@@ -4,6 +4,8 @@ import ToggleContentButton from "@/components/buttons/ToggleContentButton";
 import useAuthStore from "@/store/authStore";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { SquarePen } from "lucide-react";
 
 export default function ProfilePage() {
   const user = useAuthStore((state) => state.user);
@@ -42,6 +44,20 @@ export default function ProfilePage() {
       <div className="mt-2 ml-35 min-h-12">
         <h1 className="text-xl font-semibold">{user.name}</h1>
         <p className="text-sm text-text-80">{user.email}</p>
+      </div>
+      <div className="mx-4 my-6 flex flex-col gap-4">
+        <h2 className="text-lg">Bio</h2>
+        {user.bio ? (
+          <p>{user.bio}</p>
+        ) : (
+          <p className="text-text-80">User has not written a bio yet.</p>
+        )}
+        <Link
+          href="profile/edit"
+          className="flex max-w-62 items-center justify-center gap-2 rounded-md bg-primary-100 py-1 text-white hover:bg-primary-hover"
+        >
+          Edit profile <SquarePen size={20} />
+        </Link>
       </div>
       <ToggleContentButton />
     </div>
