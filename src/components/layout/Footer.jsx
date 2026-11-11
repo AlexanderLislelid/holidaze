@@ -45,11 +45,11 @@ export default function Footer() {
               <h3 className="mb-1 font-sans text-xs font-semibold tracking-widest text-highlight-100">
                 EXPLORE
               </h3>
-              <Link href="/venues" className="inline-flex items-center gap-2">
+              <Link href="/" className="inline-flex items-center gap-2">
                 <Hotel size={16} aria-hidden="true" />
                 Venues
               </Link>
-              <Link href="#" className="inline-flex items-center gap-2">
+              <Link href="/" className="inline-flex items-center gap-2">
                 <Search size={16} aria-hidden="true" />
                 Search
               </Link>
