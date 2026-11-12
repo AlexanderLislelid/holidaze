@@ -8,6 +8,7 @@ import { differenceInCalendarDays } from "date-fns";
 import { apiRequest } from "@/lib/api";
 import { useRouter } from "next/navigation";
 import SuccessToast from "../toasts/SuccessToast";
+import ConfirmationModal from "../modals/ConfirmationModal";
 
 export default function BookingForm({
   bookings = [],
@@ -22,6 +23,8 @@ export default function BookingForm({
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [confirmOpen, setConfirmOpen] = useState(false);
+
   const router = useRouter();
 
   const guestOptions = Array.from({ length: maxGuests }, (_, i) => ({
@@ -35,10 +38,15 @@ export default function BookingForm({
 
   const total = nights * price;
 
-  async function handleSubmit(event) {
+  function handleSubmit(event) {
+    event.preventDefault();
+    setConfirmOpen(true);
+  }
+
+  async function handleConfirm() {
+    setConfirmOpen(false);
     setError("");
     setIsLoading(true);
-    event.preventDefault();
 
     try {
       await apiRequest("holidaze/bookings", {
@@ -103,6 +111,14 @@ export default function BookingForm({
       <button type="submit" disabled={isLoading || nights < 1}>
         {isLoading ? "Booking..." : "Book now"}
       </button>
+      <ConfirmationModal
+        open={confirmOpen}
+        title="Confirm booking"
+        message={`Confirm booking for ${nights} nights at ${venueName}`}
+        confirmText="Book now"
+        onConfirm={handleConfirm}
+        onCancel={() => setConfirmOpen(false)}
+      />
       {showToast && (
         <SuccessToast message={`Successfully booked ${venueName}`} />
       )}
