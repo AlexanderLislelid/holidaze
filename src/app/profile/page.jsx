@@ -58,22 +58,6 @@ export default function ProfilePage() {
           Edit profile <SquarePen size={20} />
         </Link>
       </div>
-      <div className="mx-4 my-6 flex gap-4">
-        <Link
-          href="/profile/bookings"
-          className="rounded-md border border-border px-4 py-2 hover:bg-white"
-        >
-          My bookings
-        </Link>
-        {user.venueManager && (
-          <Link
-            href="/profile/venues"
-            className="rounded-md border border-border px-4 py-2 hover:bg-white"
-          >
-            My venues
-          </Link>
-        )}
-      </div>
     </div>
   );
 }
