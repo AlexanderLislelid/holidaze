@@ -52,6 +52,7 @@ export default function CreateVenueForm() {
       country: "",
       lat: "",
       lng: "",
+      rating: "",
     },
   });
 
@@ -79,6 +80,7 @@ export default function CreateVenueForm() {
       country,
       lat,
       lng,
+      rating,
     } = formData;
 
     try {
@@ -92,6 +94,7 @@ export default function CreateVenueForm() {
           media: mediaUrl ? [{ url: mediaUrl, alt: mediaAlt }] : [],
           meta: { wifi, parking, breakfast, pets },
           location: { address, city, zip, country, lat, lng },
+          rating,
         },
         token: accessToken,
       });
@@ -144,7 +147,7 @@ export default function CreateVenueForm() {
           )}
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-3">
           <FormInput
             label="Price per night"
             name="price"
@@ -158,6 +161,13 @@ export default function CreateVenueForm() {
             type="number"
             register={register}
             error={errors.maxGuests}
+          />
+          <FormInput
+            label="Rating"
+            name="rating"
+            type="number"
+            register={register}
+            error={errors.rating}
           />
         </div>
       </div>
