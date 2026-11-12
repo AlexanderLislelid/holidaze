@@ -9,9 +9,14 @@ import FormInput from "../inputs/FormInput";
 import { editProfileSchema } from "@/lib/schemas/profileEdit";
 import { CheckCircle, X } from "lucide-react";
 import Link from "next/link";
+import { apiRequest } from "@/lib/api";
 
 export default function EditProfileForm() {
   const user = useAuthStore((state) => state.user);
+  const updateUser = useAuthStore((state) => state.updateUser);
+  const accessToken = useAuthStore((state) => state.accessToken);
+  const router = useRouter();
+
   const [mounted, setMounted] = useState(false);
 
   const {
@@ -47,8 +52,34 @@ export default function EditProfileForm() {
 
   if (!mounted) return null;
 
+  async function onSubmit(formData) {
+    const { avatarAlt, avatarUrl, bannerAlt, bannerUrl, bio, venueManager } =
+      formData;
+
+    try {
+      const { data } = await apiRequest(`holidaze/profiles/${user.name}`, {
+        method: "PUT",
+        body: {
+          avatar: { url: avatarUrl, alt: avatarAlt },
+          banner: { url: bannerUrl, alt: bannerAlt },
+          bio,
+          venueManager,
+        },
+        token: accessToken,
+      });
+
+      updateUser(data);
+      router.push("/profile");
+    } catch (error) {
+      setError("root", { message: error.message });
+    }
+  }
+
   return (
-    <form className="mx-auto my-10 flex w-full max-w-3xl flex-col gap-8 rounded-xl bg-white px-4 py-8 shadow-sm sm:px-8">
+    <form
+      className="mx-auto my-10 flex w-full max-w-3xl flex-col gap-8 rounded-xl bg-white px-4 py-8 shadow-sm sm:px-8"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div>
         <h1 className="font-heading text-2xl font-medium text-text-100">
           Edit profile
@@ -115,6 +146,11 @@ export default function EditProfileForm() {
           />
           I want to become a venue manager
         </label>
+      )}
+      {errors.root && (
+        <p className="text-sm font-medium text-error-text">
+          {errors.root.message}
+        </p>
       )}
 
       <div className="flex flex-col-reverse gap-3 pt-6 sm:flex-row">
