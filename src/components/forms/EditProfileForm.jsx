@@ -1,7 +1,8 @@
 "use client";
 
 import useAuthStore from "@/store/authStore";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useIsClient } from "usehooks-ts";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -17,13 +18,14 @@ export default function EditProfileForm() {
   const accessToken = useAuthStore((state) => state.accessToken);
   const router = useRouter();
 
-  const [mounted, setMounted] = useState(false);
+  const isClient = useIsClient();
 
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    setError,
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: zodResolver(editProfileSchema),
     defaultValues: {
@@ -35,8 +37,6 @@ export default function EditProfileForm() {
       venueManager: false,
     },
   });
-
-  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     if (!user) return;
@@ -50,7 +50,9 @@ export default function EditProfileForm() {
     });
   }, [user, reset]);
 
-  if (!mounted) return null;
+  if (!isClient) return null;
+  if (!user)
+    return <p className="m-4">You have to be logged in to edit your profile</p>;
 
   async function onSubmit(formData) {
     const { avatarAlt, avatarUrl, bannerAlt, bannerUrl, bio, venueManager } =
@@ -156,9 +158,10 @@ export default function EditProfileForm() {
       <div className="flex flex-col-reverse gap-3 pt-6 sm:flex-row">
         <button
           type="submit"
-          className="flex items-center justify-center gap-2 rounded-lg bg-primary-100 px-4 py-2 font-medium text-white hover:bg-primary-hover"
+          disabled={isSubmitting}
+          className="flex items-center justify-center gap-2 rounded-lg bg-primary-100 px-4 py-2 font-medium text-white hover:bg-primary-hover disabled:opacity-60"
         >
-          Save changes
+          {isSubmitting ? "Saving..." : "Save changes"}
           <CheckCircle size={18} />
         </button>
         <Link

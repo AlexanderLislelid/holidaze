@@ -2,18 +2,16 @@
 
 import useAuthStore from "@/store/authStore";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { SquarePen } from "lucide-react";
 import UserBookings from "@/components/profile/UserBookings";
+import { useIsClient } from "usehooks-ts";
 
 export default function ProfilePage() {
   const user = useAuthStore((state) => state.user);
-  const [mounted, setMounted] = useState(false);
+  const isClient = useIsClient();
 
-  useEffect(() => setMounted(true), []);
-
-  if (!mounted) return null;
+  if (!isClient) return null;
   if (!user)
     return <p className="m-4">You have to be logged in to see your profile</p>;
 
@@ -32,13 +30,15 @@ export default function ProfilePage() {
           )}
         </div>
         <div className="absolute -bottom-14 left-4 flex h-30 w-30 items-center justify-center rounded-full bg-background">
-          <Image
-            src={user.avatar.url}
-            alt={user.avatar.alt || `${user.name} avatar`}
-            height={100}
-            width={100}
-            className="h-25 w-25 rounded-full object-cover"
-          />
+          {user.avatar?.url && (
+            <Image
+              src={user.avatar.url}
+              alt={user.avatar.alt || `${user.name} avatar`}
+              height={100}
+              width={100}
+              className="h-25 w-25 rounded-full object-cover"
+            />
+          )}
         </div>
       </div>
       <div className="mt-2 ml-35 min-h-12">
@@ -54,7 +54,7 @@ export default function ProfilePage() {
             <p className="text-text-80">User has not written a bio yet.</p>
           )}
           <Link
-            href="profile/edit"
+            href="/profile/edit"
             className="flex max-w-62 items-center justify-center gap-2 rounded-md bg-primary-100 py-1 text-white hover:bg-primary-hover"
           >
             Edit profile <SquarePen size={20} />
