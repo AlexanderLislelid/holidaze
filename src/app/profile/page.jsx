@@ -16,7 +16,6 @@ export default function ProfilePage() {
   if (!mounted) return null;
   if (!user)
     return <p className="m-4">You have to be logged in to see your profile</p>;
-  console.log(user);
 
   return (
     <div>
