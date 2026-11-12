@@ -2,6 +2,22 @@
 
 import { X } from "lucide-react";
 
+/**
+ * A reusable confirmation modal using the <dialog> element
+ *
+ *
+ * @example
+ * const [confirmOpen, setConfirmOpen] = useState(false);
+ *
+ * <ConfirmationModal
+ *   open={confirmOpen}
+ *   title="Confirm booking"
+ *   message="Confirm booking for x nights"
+ *   confirmText="Book now"
+ *   onConfirm={handleConfirm}
+ *   onCancel={() => setConfirmOpen(false)}
+ * />
+ */
 export default function ConfirmationModal({
   open,
   title,
