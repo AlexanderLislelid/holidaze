@@ -50,16 +50,18 @@ export default async function VenuePage({ params }) {
         <ImageCarousel images={venue.media} altText={venue.name} />
       </div>
       <div className="m-4 flex items-end gap-4 border-b border-border pb-6">
-        <Image
-          src={venue.owner.avatar.url}
-          alt={venue.owner.avatar.alt || venue.name}
-          width={75}
-          height={75}
-          className="size-18.75 shrink-0 rounded-full object-cover"
-        />
+        {venue.owner?.avatar?.url && (
+          <Image
+            src={venue.owner.avatar.url}
+            alt={venue.owner.avatar.alt || venue.owner.name}
+            width={75}
+            height={75}
+            className="size-18.75 shrink-0 rounded-full object-cover"
+          />
+        )}
         <div className="">
           <p className="text-sm text-muted-100">Hosted by</p>
-          <p className="font-medium text-text-90">{venue.owner.name}</p>
+          <p className="font-medium text-text-90">{venue.owner?.name}</p>
         </div>
       </div>
       <div className="flex flex-col gap-2 p-4">
