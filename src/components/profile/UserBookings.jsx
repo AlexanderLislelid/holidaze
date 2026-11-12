@@ -64,7 +64,6 @@ export default function UserBookings({ limit }) {
   if (!bookings) return <p>Loading bookings...</p>;
   if (bookings.length === 0) return <p>You have no bookings yet.</p>;
 
-  // Negative result = firstBooking comes first, positive = secondBooking comes first.
   const sorted = [...bookings].sort(
     (firstBooking, secondBooking) =>
       new Date(firstBooking.dateFrom) - new Date(secondBooking.dateFrom),

@@ -211,3 +211,12 @@ This file documents all use of AI tools in this project.
 - **Outcome:** Got hints about slice(), a limit prop and doing filter - sort - slice in the right order.
 
 ---
+
+## 24. JSDoc for UserBookings
+
+- **Tool used:** Claude Code (Anthropic)
+- **Date:** 12 November 2026
+- **Purpose:** Asked for a JSDoc comment for the UserBookings component that I could edit
+- **Outcome:** Received a JSDoc comment
+
+---
