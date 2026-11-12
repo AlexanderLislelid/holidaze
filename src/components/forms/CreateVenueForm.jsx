@@ -74,6 +74,8 @@ export default function CreateVenueForm() {
       city,
       zip,
       country,
+      lat,
+      lng,
     } = formData;
 
     try {
@@ -86,7 +88,7 @@ export default function CreateVenueForm() {
           maxGuests,
           media: mediaUrl ? [{ url: mediaUrl, alt: mediaAlt }] : [],
           meta: { wifi, parking, breakfast, pets },
-          location: { address, city, zip, country },
+          location: { address, city, zip, country, lat, lng },
         },
         token: accessToken,
       });
@@ -211,6 +213,28 @@ export default function CreateVenueForm() {
           register={register}
           error={errors.country}
         />
+        <FormInput
+          label="Latitude"
+          name="lat"
+          register={register}
+          error={errors.lat}
+        />
+        <FormInput
+          label="Longitude"
+          name="lng"
+          register={register}
+          error={errors.lng}
+        />
+        <div className="text-sm font-light">
+          <p>Need help finding your exact coordinates?</p>
+          <a
+            href="https://www.latlong.net/"
+            target="_blank"
+            className="text-primary-100"
+          >
+            Click here
+          </a>
+        </div>
       </div>
 
       {errors.root && (
