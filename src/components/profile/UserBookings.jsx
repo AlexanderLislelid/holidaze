@@ -19,6 +19,7 @@ export default function UserBookings() {
           `holidaze/profiles/${user.name}/bookings?_venue=true`,
           { token: accessToken },
         );
+
         setBookings(data);
       } catch (err) {
         setError(err.message);
@@ -34,11 +35,23 @@ export default function UserBookings() {
 
   return (
     <ul>
-      {bookings.map((booking) => (
-        <li key={booking.id} className="p-4">
-          {booking.venue?.name}
-        </li>
-      ))}
+      {bookings.map((booking) => {
+        const dateFrom = new Date(booking.dateFrom).toLocaleDateString("nb-NO");
+        const dateTo = new Date(booking.dateTo).toLocaleDateString("nb-NO");
+
+        return (
+          <li key={booking.id} className="p-4">
+            <div className="rounded-md border border-border bg-white p-2">
+              <div className="items- flex justify-between">
+                <h3 className="font-medium">{booking.venue?.name}</h3>
+                <p className="pr-8 text-[10px]">
+                  {dateFrom} - {dateTo}
+                </p>
+              </div>
+            </div>
+          </li>
+        );
+      })}
     </ul>
   );
 }
