@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import useAuthStore from "@/store/authStore";
 import { useIsClient } from "usehooks-ts";
 import { useForm } from "react-hook-form";
@@ -10,6 +11,7 @@ import { CheckCircle, X } from "lucide-react";
 import FormInput from "../inputs/FormInput";
 import { createVenueSchema } from "@/lib/schemas/create";
 import { apiRequest } from "@/lib/api";
+import ConfirmationModal from "../modals/ConfirmationModal";
 
 const amenities = [
   { name: "wifi", label: "Wifi" },
@@ -24,6 +26,7 @@ export default function CreateVenueForm() {
   const router = useRouter();
 
   const isClient = useIsClient();
+  const [confirmOpen, setConfirmOpen] = useState(false);
 
   const {
     register,
@@ -99,10 +102,15 @@ export default function CreateVenueForm() {
     }
   }
 
+  function handleConfirm() {
+    setConfirmOpen(false);
+    handleSubmit(onSubmit)();
+  }
+
   return (
     <form
       className="mx-auto my-10 flex w-full max-w-3xl flex-col gap-8 rounded-xl bg-white px-4 py-8 shadow-sm sm:px-8"
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(() => setConfirmOpen(true))}
     >
       <div>
         <h1 className="font-heading text-2xl font-medium text-text-100">
@@ -260,6 +268,15 @@ export default function CreateVenueForm() {
           <X size={18} />
         </Link>
       </div>
+
+      <ConfirmationModal
+        open={confirmOpen}
+        title="Create venue"
+        message="Are you sure you want to create this venue?"
+        confirmText="Create venue"
+        onConfirm={handleConfirm}
+        onCancel={() => setConfirmOpen(false)}
+      />
     </form>
   );
 }
