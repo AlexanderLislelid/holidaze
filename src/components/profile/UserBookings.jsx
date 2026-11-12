@@ -34,19 +34,23 @@ export default function UserBookings() {
   if (bookings.length === 0) return <p>You have no bookings yet.</p>;
 
   return (
-    <ul>
+    <ul className="flex flex-col gap-3">
       {bookings.map((booking) => {
         const dateFrom = new Date(booking.dateFrom).toLocaleDateString("nb-NO");
         const dateTo = new Date(booking.dateTo).toLocaleDateString("nb-NO");
 
         return (
-          <li key={booking.id} className="p-4">
-            <div className="rounded-md border border-border bg-white p-2">
-              <div className="items- flex justify-between">
+          <li key={booking.id}>
+            <div className="rounded-xl border border-border bg-white p-4">
+              <div className="flex justify-between gap-2">
                 <h3 className="font-medium">{booking.venue?.name}</h3>
-                <p className="pr-8 text-[10px]">
+                <p className="shrink-0 text-sm text-text-70">
                   {dateFrom} - {dateTo}
                 </p>
+              </div>
+              <div className="flex justify-between">
+                <p>guests</p>
+                <p>icons</p>
               </div>
             </div>
           </li>

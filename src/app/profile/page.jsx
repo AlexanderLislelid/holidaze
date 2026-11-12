@@ -45,8 +45,8 @@ export default function ProfilePage() {
         <h1 className="text-xl font-semibold">{user.name}</h1>
         <p className="text-sm text-text-80">{user.email}</p>
       </div>
-      <div className="flex flex-col md:flex-row md:justify-between">
-        <div className="mx-4 my-6 flex flex-col gap-4">
+      <div className="flex flex-col gap-6 md:flex-row">
+        <div className="mx-4 my-6 flex flex-col gap-4 md:w-1/3">
           <h2 className="text-lg">Bio</h2>
           {user.bio ? (
             <p>{user.bio}</p>
@@ -60,8 +60,8 @@ export default function ProfilePage() {
             Edit profile <SquarePen size={20} />
           </Link>
         </div>
-        <div className="mx-4 my-6">
-          <h2 className="text-lg">Upcoming Bookings</h2>
+        <div className="mx-4 my-6 md:flex-1">
+          <h2 className="mb-3 text-lg">Upcoming Bookings</h2>
           <UserBookings />
         </div>
       </div>
