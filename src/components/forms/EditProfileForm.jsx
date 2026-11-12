@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import FormInput from "../inputs/FormInput";
 import { editProfileSchema } from "@/lib/schemas/profileEdit";
-import { Check, CheckCircle, X } from "lucide-react";
+import { CheckCircle, X } from "lucide-react";
 import Link from "next/link";
 
 export default function EditProfileForm() {
@@ -47,10 +47,18 @@ export default function EditProfileForm() {
 
   if (!mounted) return null;
 
-  console.log(user);
   return (
-    <form>
-      <div className="flex gap-2">
+    <form className="mx-auto my-10 flex w-full max-w-3xl flex-col gap-8 rounded-xl bg-white px-4 py-8 shadow-sm sm:px-8">
+      <div>
+        <h1 className="font-heading text-2xl font-medium text-text-100">
+          Edit profile
+        </h1>
+        <p className="text-sm text-muted-100">
+          Update your avatar, banner and bio.
+        </p>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2">
         <FormInput
           label="Avatar URL"
           name="avatarUrl"
@@ -58,13 +66,14 @@ export default function EditProfileForm() {
           error={errors.avatarUrl}
         />
         <FormInput
-          label="Avatar Alt"
+          label="Avatar alt text"
           name="avatarAlt"
           register={register}
           error={errors.avatarAlt}
         />
       </div>
-      <div className="flex gap-2">
+
+      <div className="grid gap-4 sm:grid-cols-2">
         <FormInput
           label="Banner URL"
           name="bannerUrl"
@@ -72,12 +81,13 @@ export default function EditProfileForm() {
           error={errors.bannerUrl}
         />
         <FormInput
-          label="Banner Alt"
+          label="Banner alt"
           name="bannerAlt"
           register={register}
           error={errors.bannerAlt}
         />
       </div>
+
       <div className="flex flex-col gap-1">
         <label htmlFor="bio" className="text-sm text-text-80">
           Bio
@@ -85,7 +95,8 @@ export default function EditProfileForm() {
         <textarea
           id="bio"
           rows={4}
-          className={`rounded-md border p-2 ${errors.bio ? "border-2 border-error-icon" : "border-border"}`}
+          placeholder="Tell us a little about yourself"
+          className={`resize-none rounded-md border p-2 ${errors.bio ? "border-2 border-error-icon" : "border-border"}`}
           {...register("bio")}
         />
         {errors.bio && (
@@ -93,10 +104,10 @@ export default function EditProfileForm() {
             {errors.bio.message}
           </p>
         )}
-        <p className="text-sm text-text-80">Describe yourself</p>
       </div>
-      {!user.venueManager ? (
-        <label className="flex w-fit cursor-pointer items-center gap-3 rounded-md border border-border px-3 py-2 text-sm text-text-80">
+
+      {!user.venueManager && (
+        <label className="flex w-fit cursor-pointer items-center gap-3 rounded-md border border-border px-3 py-2 text-sm text-text-80 hover:bg-primary-10">
           <input
             type="checkbox"
             {...register("venueManager")}
@@ -104,19 +115,22 @@ export default function EditProfileForm() {
           />
           I want to become a venue manager
         </label>
-      ) : (
-        ""
       )}
-      <div className="flex items-center gap-6">
-        <button className="flex items-center gap-2 rounded-md bg-primary-100 px-4 py-1 text-white hover:bg-primary-hover">
-          Save Changes <CheckCircle size={18} />
+
+      <div className="flex flex-col-reverse gap-3 pt-6 sm:flex-row">
+        <button
+          type="submit"
+          className="flex items-center justify-center gap-2 rounded-lg bg-primary-100 px-4 py-2 font-medium text-white hover:bg-primary-hover"
+        >
+          Save changes
+          <CheckCircle size={18} />
         </button>
         <Link
           href="/profile"
-          className="flex items-center gap-2 rounded-md border border-primary-100 bg-white px-4 py-1 text-primary-100"
+          className="flex items-center justify-center gap-2 rounded-lg border border-primary-100 px-4 py-2 font-medium text-primary-100 hover:bg-secondary-10"
         >
           Cancel
-          <X size={18} />{" "}
+          <X size={18} />
         </Link>
       </div>
     </form>
