@@ -41,6 +41,12 @@ export default function Header() {
     setMenuOpen((open) => !open);
   }
 
+  function handleMenuClick(event) {
+    if (event.target.closest("a, button")) {
+      setMenuOpen(false);
+    }
+  }
+
   return user ? (
     <header className="mx-auto flex w-full max-w-300 items-center justify-between bg-white p-3">
       <Link href="/">
@@ -95,6 +101,7 @@ export default function Header() {
         </button>
         <div
           className={`${menuOpen ? "block" : "hidden"} absolute top-full right-0 z-10 mt-4`}
+          onClick={handleMenuClick}
         >
           <NavMenu />
         </div>
@@ -124,6 +131,7 @@ export default function Header() {
         </button>
         <div
           className={`${menuOpen ? "block" : "hidden"} absolute top-full right-0 z-10 mt-4`}
+          onClick={handleMenuClick}
         >
           <NavMenu />
         </div>
