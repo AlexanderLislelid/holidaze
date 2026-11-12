@@ -17,6 +17,7 @@ export default function ProfilePage() {
   if (!user)
     return <p className="m-4">You have to be logged in to see your profile</p>;
   console.log(user);
+
   return (
     <div>
       <div className="relative aspect-3/1 w-full md:aspect-4/1">
@@ -62,6 +63,7 @@ export default function ProfilePage() {
         </div>
         <div className="mx-4 my-6 md:flex-1">
           <h2 className="mb-3 text-lg">Upcoming Bookings</h2>
+
           <UserBookings />
         </div>
       </div>
