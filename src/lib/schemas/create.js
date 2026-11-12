@@ -30,6 +30,12 @@ export const createVenueSchema = z.object({
   city: z.string(),
   zip: z.string(),
   country: z.string(),
-  lat: z.number(),
-  lng: z.number(),
+  lat: z.coerce
+    .number("Must be a number")
+    .min(-90, "Must be between -90 and 90")
+    .max(90, "Must be between -90 and 90"),
+  lng: z.coerce
+    .number("Must be a number")
+    .min(-180, "Must be between -180 and 180")
+    .max(180, "Must be between -180 and 180"),
 });
