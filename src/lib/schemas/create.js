@@ -38,4 +38,8 @@ export const createVenueSchema = z.object({
     .number("Must be a number")
     .min(-180, "Must be between -180 and 180")
     .max(180, "Must be between -180 and 180"),
+  rating: z.coerce
+    .number("Must be a number")
+    .min(0, "Must be between 0 and 5")
+    .max(5, "Must be between 0 and 5"),
 });
