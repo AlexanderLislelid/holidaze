@@ -202,3 +202,12 @@ This file documents all use of AI tools in this project.
 - **Outcome:** was explained that the page crashed because it is also rendered on the server, where there is no localStorage, so user from the Zustand store is null. claude suggested a mounted state that becomes true in a useEffect, so the page only reads the user once it runs in the browser.
 
 ---
+
+## 23. Showing only 3 upcoming bookings on the profile page
+
+- **Tool used:** Claude Code (Anthropic)
+- **Date:** 12 November 2026
+- **Purpose:** Asked for hints on how to show only 3 bookings on the profile page, and how to remove bookings with past dates.
+- **Outcome:** Got hints about slice(), a limit prop and doing filter - sort - slice in the right order.
+
+---

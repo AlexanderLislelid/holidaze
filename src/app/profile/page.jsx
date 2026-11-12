@@ -64,7 +64,7 @@ export default function ProfilePage() {
         <div className="mx-4 my-6 md:flex-1">
           <h2 className="mb-3 text-lg">Upcoming Bookings</h2>
 
-          <UserBookings />
+          <UserBookings limit={3} />
         </div>
       </div>
     </div>
