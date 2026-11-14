@@ -6,6 +6,7 @@ import VenueTags from "@/components/venues/VenueTags";
 import VenueMap from "@/components/venues/VenueMap";
 import BookingForm from "@/components/forms/BookingForm";
 import ImageCarousel from "@/components/venues/ImageCarousel";
+import EditVenueButton from "@/components/buttons/EditVenueButton";
 export default async function VenuePage({ params }) {
   const { id } = await params;
   const { data: venue } = await apiRequest(
@@ -17,6 +18,7 @@ export default async function VenuePage({ params }) {
       <BreadCrumb href="/" name="home" />
       <div className="mx-4 mb-6 flex flex-col gap-2">
         <h1 className="text-3xl font-semibold">{venue.name}</h1>
+
         <div className="flex gap-6 text-sm">
           <div className="flex gap-1">
             <MapPin
@@ -66,6 +68,7 @@ export default async function VenuePage({ params }) {
       </div>
       <div className="flex flex-col gap-2 p-4">
         <div className="justify-between md:flex">
+          <EditVenueButton venueId={venue.id} ownerName={venue.owner?.name} />
           <div className="py-6 md:pr-6">
             <h2 className="font-sans text-xl">About this place</h2>
             <p className="mt-2 font-light text-text-90">{venue.description}</p>
