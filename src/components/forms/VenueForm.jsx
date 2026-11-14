@@ -63,9 +63,17 @@ export default function VenueForm({ venue }) {
 
   if (!isClient) return null;
   if (!user)
-    return <p className="m-4">You have to be logged in to create a venue</p>;
+    return (
+      <p className="m-4">
+        You have to be logged in to {editForm ? "edit" : "create"} a venue
+      </p>
+    );
   if (!user.venueManager)
-    return <p className="m-4">Only venue managers can create venues</p>;
+    return (
+      <p className="m-4">
+        Only venue managers can {editForm ? "edit" : "create"} venues
+      </p>
+    );
 
   async function onSubmit(formData) {
     const {
@@ -89,8 +97,14 @@ export default function VenueForm({ venue }) {
     } = formData;
 
     try {
-      const { data } = await apiRequest("holidaze/venues", {
-        method: "POST",
+      const endpoint = editForm
+        ? `holidaze/venues/${venue.id}`
+        : `holidaze/venues`;
+
+      const method = editForm ? "PUT" : "POST";
+
+      const { data } = await apiRequest(endpoint, {
+        method: method,
         body: {
           name,
           description,
@@ -122,7 +136,7 @@ export default function VenueForm({ venue }) {
     >
       <div>
         <h1 className="font-heading text-2xl font-medium text-text-100">
-          Create venue
+          {editForm ? "Edit venue" : "Create venue"}
         </h1>
       </div>
 
@@ -272,7 +286,13 @@ export default function VenueForm({ venue }) {
           disabled={isSubmitting}
           className="flex items-center justify-center gap-2 rounded-lg bg-primary-100 px-4 py-2 font-medium text-white hover:bg-primary-hover disabled:opacity-60"
         >
-          {isSubmitting ? "Creating..." : "Create venue"}
+          {isSubmitting
+            ? editForm
+              ? "Saving..."
+              : "Creating..."
+            : editForm
+              ? "Save changes"
+              : "Create venue"}
           <CheckCircle size={18} />
         </button>
         <Link
@@ -286,9 +306,13 @@ export default function VenueForm({ venue }) {
 
       <ConfirmationModal
         open={confirmOpen}
-        title="Create venue"
-        message="Are you sure you want to create this venue?"
-        confirmText="Create venue"
+        title={editForm ? "Edit venue" : "Create venue"}
+        message={
+          editForm
+            ? "Are you sure you want to save these changes?"
+            : "Are you sure you want to create this venue?"
+        }
+        confirmText={editForm ? "Save changes" : "Create venue"}
         onConfirm={handleConfirm}
         onCancel={() => setConfirmOpen(false)}
       />
