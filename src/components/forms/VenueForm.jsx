@@ -20,7 +20,30 @@ const amenities = [
   { name: "pets", label: "Pets allowed" },
 ];
 
-export default function VenueForm() {
+function toFormValues(venue) {
+  return {
+    name: venue?.name ?? "",
+    description: venue?.description ?? "",
+    price: venue?.price ?? "",
+    maxGuests: venue?.maxGuests ?? "",
+    rating: venue?.rating ?? "",
+    mediaUrl: venue?.media?.[0]?.url ?? "",
+    mediaAlt: venue?.media?.[0]?.alt ?? "",
+    wifi: venue?.meta?.wifi ?? false,
+    parking: venue?.meta?.parking ?? false,
+    breakfast: venue?.meta?.breakfast ?? false,
+    pets: venue?.meta?.pets ?? false,
+    address: venue?.location?.address ?? "",
+    city: venue?.location?.city ?? "",
+    zip: venue?.location?.zip ?? "",
+    country: venue?.location?.country ?? "",
+    lat: venue?.location?.lat ?? "",
+    lng: venue?.location?.lng ?? "",
+  };
+}
+
+export default function VenueForm({ venue }) {
+  const editForm = Boolean(venue);
   const user = useAuthStore((state) => state.user);
   const accessToken = useAuthStore((state) => state.accessToken);
   const router = useRouter();
@@ -35,25 +58,7 @@ export default function VenueForm() {
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: zodResolver(createVenueSchema),
-    defaultValues: {
-      name: "",
-      description: "",
-      price: "",
-      maxGuests: "",
-      mediaUrl: "",
-      mediaAlt: "",
-      wifi: false,
-      parking: false,
-      breakfast: false,
-      pets: false,
-      address: "",
-      city: "",
-      zip: "",
-      country: "",
-      lat: "",
-      lng: "",
-      rating: "",
-    },
+    defaultValues: toFormValues(venue),
   });
 
   if (!isClient) return null;
