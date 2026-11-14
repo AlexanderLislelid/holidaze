@@ -220,3 +220,12 @@ This file documents all use of AI tools in this project.
 - **Outcome:** Received a JSDoc comment
 
 ---
+
+## 25. Reusing VenueForm for editing venues
+
+- **Tool used:** Claude Code (Anthropic)
+- **Date:** 14 November 2026
+- **Purpose:** Asked for code review and explanations underway as I refactored the VenueForm to be reusable.
+- **Outcome:** got review and and some suggested changes and fixed the bugs found in review (typos, a wrong variable and a mixed up ternary).
+
+---
