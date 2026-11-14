@@ -20,7 +20,7 @@ const amenities = [
   { name: "pets", label: "Pets allowed" },
 ];
 
-export default function CreateVenueForm() {
+export default function ManagerVenueForm() {
   const user = useAuthStore((state) => state.user);
   const accessToken = useAuthStore((state) => state.accessToken);
   const router = useRouter();
