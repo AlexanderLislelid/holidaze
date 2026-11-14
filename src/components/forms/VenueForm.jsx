@@ -75,6 +75,8 @@ export default function VenueForm({ venue }) {
       </p>
     );
 
+  if (editForm && venue.owner?.name !== user.name)
+    return <p>You can only edit your own venue</p>;
   async function onSubmit(formData) {
     const {
       name,
