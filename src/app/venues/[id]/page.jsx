@@ -7,6 +7,7 @@ import VenueMap from "@/components/venues/VenueMap";
 import BookingForm from "@/components/forms/BookingForm";
 import ImageCarousel from "@/components/venues/ImageCarousel";
 import EditVenueButton from "@/components/buttons/EditVenueButton";
+import DeleteVenueButton from "@/components/buttons/DeleteVenueButton";
 export default async function VenuePage({ params }) {
   const { id } = await params;
   const { data: venue } = await apiRequest(
@@ -47,6 +48,14 @@ export default async function VenuePage({ params }) {
             <p>{venue.maxGuests}</p>
           </div>
         </div>
+        <div className="flex justify-end gap-2">
+          <EditVenueButton venueId={venue.id} ownerName={venue.owner?.name} />
+          <DeleteVenueButton
+            venueId={venue.id}
+            ownerName={venue.owner?.name}
+            venueName={venue.name}
+          />
+        </div>
       </div>
       <div className="relative h-80 w-full">
         <ImageCarousel images={venue.media} altText={venue.name} />
@@ -68,7 +77,6 @@ export default async function VenuePage({ params }) {
       </div>
       <div className="flex flex-col gap-2 p-4">
         <div className="justify-between md:flex">
-          <EditVenueButton venueId={venue.id} ownerName={venue.owner?.name} />
           <div className="py-6 md:pr-6">
             <h2 className="font-sans text-xl">About this place</h2>
             <p className="mt-2 font-light text-text-90">{venue.description}</p>

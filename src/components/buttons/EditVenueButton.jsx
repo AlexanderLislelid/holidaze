@@ -15,7 +15,7 @@ export default function EditVenueButton({ venueId, ownerName }) {
   return (
     <Link
       href={`/venues/${venueId}/edit`}
-      className="flex max-w-62 items-center justify-center gap-2 rounded-md bg-primary-100 py-1 text-white hover:bg-primary-hover"
+      className="flex max-w-62 items-center justify-center gap-2 rounded-md bg-primary-100 px-4 py-1 text-white hover:bg-primary-hover"
     >
       Edit venue <SquarePen size={18} />
     </Link>
