@@ -2,8 +2,6 @@ import z from "zod";
 
 const required = z.string().trim().min(1, "Required");
 
-const url = z.url("Must be a valid URL").or(z.literal(""));
-
 const alt = z.string().max(119, "Must be less than 120 characters");
 
 const checkbox = z.boolean();
@@ -18,8 +16,12 @@ export const createVenueSchema = z.object({
     .min(1, "Minimum 1 guest")
     .max(100, "Max 100 guests"),
 
-  mediaUrl: url,
-  mediaAlt: alt,
+  media: z.array(
+    z.object({
+      url: z.url("Must be a valid URL"),
+      alt: alt,
+    }),
+  ),
 
   wifi: checkbox,
   parking: checkbox,
