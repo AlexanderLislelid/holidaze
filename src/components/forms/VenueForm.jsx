@@ -3,11 +3,11 @@
 import { useState } from "react";
 import useAuthStore from "@/store/authStore";
 import { useIsClient } from "usehooks-ts";
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { CheckCircle, X } from "lucide-react";
+import { CheckCircle, Trash, X } from "lucide-react";
 import FormInput from "../inputs/FormInput";
 import { createVenueSchema } from "@/lib/schemas/create";
 import { apiRequest } from "@/lib/api";
@@ -27,8 +27,7 @@ function toFormValues(venue) {
     price: venue?.price ?? "",
     maxGuests: venue?.maxGuests ?? "",
     rating: venue?.rating ?? "",
-    mediaUrl: venue?.media?.[0]?.url ?? "",
-    mediaAlt: venue?.media?.[0]?.alt ?? "",
+    media: venue?.media ?? [],
     wifi: venue?.meta?.wifi ?? false,
     parking: venue?.meta?.parking ?? false,
     breakfast: venue?.meta?.breakfast ?? false,
@@ -55,10 +54,16 @@ export default function VenueForm({ venue }) {
     register,
     handleSubmit,
     setError,
+    control,
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: zodResolver(createVenueSchema),
     defaultValues: toFormValues(venue),
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "media",
   });
 
   if (!isClient) return null;
@@ -83,8 +88,7 @@ export default function VenueForm({ venue }) {
       description,
       price,
       maxGuests,
-      mediaUrl,
-      mediaAlt,
+      media,
       wifi,
       parking,
       breakfast,
@@ -112,7 +116,7 @@ export default function VenueForm({ venue }) {
           description,
           price,
           maxGuests,
-          media: mediaUrl ? [{ url: mediaUrl, alt: mediaAlt }] : [],
+          media,
           meta: { wifi, parking, breakfast, pets },
           location: { address, city, zip, country, lat, lng },
           rating,
@@ -193,19 +197,41 @@ export default function VenueForm({ venue }) {
         </div>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        <FormInput
-          label="Image URL"
-          name="mediaUrl"
-          register={register}
-          error={errors.mediaUrl}
-        />
-        <FormInput
-          label="Image alt text"
-          name="mediaAlt"
-          register={register}
-          error={errors.mediaAlt}
-        />
+      <div className="flex flex-col gap-4">
+        {fields.map((field, index) => (
+          <div
+            key={field.id}
+            className="grid items-end gap-4 sm:grid-cols-[1fr_1fr_auto]"
+          >
+            <FormInput
+              label="Image URL"
+              name={`media.${index}.url`}
+              register={register}
+              error={errors.media?.[index]?.url}
+            />
+            <FormInput
+              label="Image alt text"
+              name={`media.${index}.alt`}
+              register={register}
+              error={errors.media?.[index]?.alt}
+            />
+            <button
+              type="button"
+              onClick={() => remove(index)}
+              className="rounded-lg px-4 py-2 text-sm text-error-text"
+            >
+              <Trash size={18} />
+            </button>
+          </div>
+        ))}
+
+        <button
+          type="button"
+          onClick={() => append({ url: "", alt: "" })}
+          className="rounded-lg border border-primary-100 px-4 py-1 font-medium text-primary-100 hover:bg-secondary-10"
+        >
+          Add image
+        </button>
       </div>
 
       <fieldset className="flex flex-col gap-2">
