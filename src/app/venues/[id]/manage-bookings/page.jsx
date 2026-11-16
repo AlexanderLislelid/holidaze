@@ -8,7 +8,6 @@ export default async function ManageBookingsPage({ params }) {
     `holidaze/venues/${id}?_bookings=true`,
   );
 
-  console.log(venue);
   return (
     <div>
       <div>

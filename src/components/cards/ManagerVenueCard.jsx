@@ -5,7 +5,6 @@ import VenueTags from "../venues/VenueTags";
 
 export default function ManagerVenueCard({ venue }) {
   const bookingsQty = venue._count.bookings;
-  console.log("log:", venue);
 
   return (
     <div className="flex flex-col rounded-xl bg-white p-3 shadow-md">
@@ -47,11 +46,12 @@ export default function ManagerVenueCard({ venue }) {
         >
           Edit <SquarePen size={18} />
         </Link>
+
         <Link
           href={`/venues/${venue.id}/manage-bookings`}
           className="flex items-center gap-2 rounded-lg border border-primary-100 px-4 py-1 text-primary-100 hover:bg-secondary-20"
         >
-          Bookings
+          {bookingsQty > 0 ? `Bookings (${bookingsQty})` : "No bookings yet"}
         </Link>
       </div>
     </div>
