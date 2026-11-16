@@ -1,8 +1,28 @@
+import Link from "next/link";
+import Image from "next/image";
+
 export default function ManagerVenueCard({ venue }) {
+  const bookingsQty = venue._count.bookings;
+  console.log("log:", bookingsQty);
+
   return (
-    <div className="rounded border p-4">
-      <h2 className="text-lg font-semibold">{venue.name}</h2>
-      <p>{venue.description}</p>
+    <div className="flex flex-col rounded-xl bg-white shadow-md">
+      <div className="relative h-48 w-full">
+        <Image
+          src={venue.media?.[0]?.url || "https://placehold.co/400.png"}
+          alt={venue.media?.[0]?.alt || venue.name}
+          fill
+          className="object-cover"
+        />
+        <div className="absolute top-2 left-2 rounded-full border border-border bg-white px-2 py-1 text-sm text-text-80 shadow-lg">
+          <p>{bookingsQty > 0 ? `${bookingsQty} upcoming` : "No bookings"}</p>
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-2 p-4">
+        <h2 className="text-lg font-semibold">{venue.name}</h2>
+        <Link href={`/venues/${venue.id}`}>View Venue</Link>
+      </div>
     </div>
   );
 }
