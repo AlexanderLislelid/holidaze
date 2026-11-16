@@ -40,12 +40,18 @@ export default function ManagerVenueCard({ venue }) {
         {venue.price}kr <span className="font-sans text-sm">/ night</span>
       </p>
 
-      <div className="mt-4 flex">
+      <div className="mt-4 flex gap-4">
         <Link
           href={`/venues/${venue.id}/edit`}
           className="flex items-center gap-2 rounded-lg bg-primary-100 px-4 py-1 text-white hover:bg-primary-hover"
         >
           Edit <SquarePen size={18} />
+        </Link>
+        <Link
+          href={`/venues/${venue.id}/manage-bookings`}
+          className="flex items-center gap-2 rounded-lg border border-primary-100 px-4 py-1 text-primary-100 hover:bg-secondary-20"
+        >
+          Bookings
         </Link>
       </div>
     </div>
