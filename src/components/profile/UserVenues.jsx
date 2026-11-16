@@ -35,7 +35,7 @@ export default function UserVenues() {
   if (venues.length === 0) return <p>You have no venues yet.</p>;
 
   return (
-    <ul className="flex flex-col gap-3">
+    <ul className="grid gap-3 md:grid-cols-2">
       {venues.map((venue) => (
         <li key={venue.id}>
           <ManagerVenueCard venue={venue} />
