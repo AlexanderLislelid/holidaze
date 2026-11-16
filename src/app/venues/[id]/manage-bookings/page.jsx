@@ -10,8 +10,21 @@ export default async function ManageBookingsPage({ params }) {
 
   return (
     <div>
+      <BreadCrumb href="/profile/venues" name="Venues" />
       <div>
-        <BreadCrumb href="/profile/venues" name="Venues" />
+        <div className="m-4 flex flex-col gap-4">
+          <div>
+            <h2 className="text-2xl font-semibold">{venue.name}</h2>
+            <p className="text-sm text-text-80">Bookings for this venue</p>
+          </div>
+          <Image
+            src={venue.media[0]?.url || "https://placehold.net/400x200.png"}
+            alt={venue.media[0]?.alt || `${venue.name}`}
+            width={400}
+            height={200}
+            className="rounded-lg"
+          ></Image>
+        </div>
         <ul>
           {venue.bookings.map((booking) => (
             <li key={booking.id}>
