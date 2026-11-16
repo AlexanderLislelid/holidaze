@@ -22,7 +22,7 @@ const venueTags = [
 export default function VenueTags({ tags }) {
   const available = venueTags.filter((amenity) => tags[amenity.label]);
   return (
-    <ul className="flex gap-2">
+    <ul className="flex flex-wrap gap-2">
       {available.map(({ label, Icon }) => (
         <li
           key={label}
