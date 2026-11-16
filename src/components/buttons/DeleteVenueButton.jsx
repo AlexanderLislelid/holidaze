@@ -7,6 +7,7 @@ import { useIsClient } from "usehooks-ts";
 import useAuthStore from "@/store/authStore";
 import { apiRequest } from "@/lib/api";
 import ConfirmationModal from "../modals/ConfirmationModal";
+import SuccessToast from "../toasts/SuccessToast";
 
 export default function DeleteVenueButton({ venueId, ownerName, venueName }) {
   const user = useAuthStore((state) => state.user);
@@ -16,6 +17,7 @@ export default function DeleteVenueButton({ venueId, ownerName, venueName }) {
 
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [error, setError] = useState(null);
+  const [showToast, setShowToast] = useState(false);
 
   if (!isClient) return null;
   if (user?.name !== ownerName) return null;
@@ -27,7 +29,8 @@ export default function DeleteVenueButton({ venueId, ownerName, venueName }) {
         method: "DELETE",
         token: accessToken,
       });
-      router.push("/profile/venues");
+      setShowToast(true);
+      setTimeout(() => router.push("/profile/venues"), 2000);
     } catch (err) {
       setError(err.message);
     }
@@ -52,6 +55,9 @@ export default function DeleteVenueButton({ venueId, ownerName, venueName }) {
         onConfirm={handleDelete}
         onCancel={() => setConfirmOpen(false)}
       />
+      {showToast && (
+        <SuccessToast message={`${venueName} was deleted successfully`} />
+      )}
     </div>
   );
 }

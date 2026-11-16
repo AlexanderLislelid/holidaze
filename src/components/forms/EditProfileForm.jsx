@@ -1,7 +1,7 @@
 "use client";
 
 import useAuthStore from "@/store/authStore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useIsClient } from "usehooks-ts";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,6 +11,7 @@ import { editProfileSchema } from "@/lib/schemas/profileEdit";
 import { CheckCircle, X } from "lucide-react";
 import Link from "next/link";
 import { apiRequest } from "@/lib/api";
+import SuccessToast from "../toasts/SuccessToast";
 
 export default function EditProfileForm() {
   const user = useAuthStore((state) => state.user);
@@ -19,6 +20,7 @@ export default function EditProfileForm() {
   const router = useRouter();
 
   const isClient = useIsClient();
+  const [showToast, setShowToast] = useState(false);
 
   const {
     register,
@@ -71,7 +73,8 @@ export default function EditProfileForm() {
       });
 
       updateUser(data);
-      router.push("/profile");
+      setShowToast(true);
+      setTimeout(() => router.push("/profile"), 2000);
     } catch (error) {
       setError("root", { message: error.message });
     }
@@ -172,6 +175,7 @@ export default function EditProfileForm() {
           <X size={18} />
         </Link>
       </div>
+      {showToast && <SuccessToast message="Profile updated successfully" />}
     </form>
   );
 }

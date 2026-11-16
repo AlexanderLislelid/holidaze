@@ -12,6 +12,7 @@ import FormInput from "../inputs/FormInput";
 import { createVenueSchema } from "@/lib/schemas/create";
 import { apiRequest } from "@/lib/api";
 import ConfirmationModal from "../modals/ConfirmationModal";
+import SuccessToast from "../toasts/SuccessToast";
 
 const amenities = [
   { name: "wifi", label: "Wifi" },
@@ -49,6 +50,7 @@ export default function VenueForm({ venue }) {
 
   const isClient = useIsClient();
   const [confirmOpen, setConfirmOpen] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   const {
     register,
@@ -124,7 +126,8 @@ export default function VenueForm({ venue }) {
         token: accessToken,
       });
 
-      router.push(`/venues/${data.id}`);
+      setShowToast(true);
+      setTimeout(() => router.push(`/venues/${data.id}`), 2000);
     } catch (error) {
       setError("root", { message: error.message });
     }
@@ -344,6 +347,15 @@ export default function VenueForm({ venue }) {
         onConfirm={handleConfirm}
         onCancel={() => setConfirmOpen(false)}
       />
+      {showToast && (
+        <SuccessToast
+          message={
+            editForm
+              ? "Venue updated successfully"
+              : "Venue created successfully"
+          }
+        />
+      )}
     </form>
   );
 }
