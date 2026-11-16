@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import NavMenu from "../navigation/NavMenu";
-import { ChevronDown, MenuSquare, X, UserRoundPlus } from "lucide-react";
+import { ChevronDown, Menu, X, UserRoundPlus } from "lucide-react";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import useAuthStore from "@/store/authStore";
@@ -69,12 +69,12 @@ export default function Header() {
 
         {/* Mobile menu */}
         <button
-          className="md:hidden"
+          className="rounded-full bg-primary-100 p-2 text-white md:hidden"
           onClick={toggleMenu}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
         >
-          {menuOpen ? <X /> : <MenuSquare />}
+          {menuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
 
         {/* Desktop menu */}
@@ -125,9 +125,9 @@ export default function Header() {
           onClick={toggleMenu}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
-          className="p-2 text-primary-100"
+          className="rounded-full bg-primary-100 p-2 text-white"
         >
-          {menuOpen ? <X /> : <MenuSquare />}
+          {menuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
         <div
           className={`${menuOpen ? "block" : "hidden"} absolute top-full right-0 z-10 mt-4`}
