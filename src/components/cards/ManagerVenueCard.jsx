@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, Users } from "lucide-react";
+import { MapPin, SquarePen, Users } from "lucide-react";
 import VenueTags from "../venues/VenueTags";
 
 export default function ManagerVenueCard({ venue }) {
@@ -21,7 +21,7 @@ export default function ManagerVenueCard({ venue }) {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 py-4">
+      <div className="flex flex-col gap-2 border-b border-border py-4">
         <h2 className="text-2xl font-semibold">{venue.name}</h2>
         <p className="flex items-center gap-2">
           <MapPin size={18} className="text-accent-100" />
@@ -34,7 +34,19 @@ export default function ManagerVenueCard({ venue }) {
         <div className="my-4">
           <VenueTags tags={venue.meta} />
         </div>
-        <Link href={`/venues/${venue.id}`}>View venue</Link>
+      </div>
+
+      <p className="my-2 font-heading text-2xl">
+        {venue.price}kr <span className="font-sans text-sm">/ night</span>
+      </p>
+
+      <div className="mt-4 flex">
+        <Link
+          href={`/venues/${venue.id}/edit`}
+          className="flex items-center gap-2 rounded-lg bg-primary-100 px-4 py-1 text-white hover:bg-primary-hover"
+        >
+          Edit <SquarePen size={18} />
+        </Link>
       </div>
     </div>
   );
