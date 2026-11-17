@@ -26,7 +26,10 @@ export default async function ManageBookingsPage({ params }) {
             className="w-full min-w-0 rounded-lg object-cover md:aspect-auto md:flex-1"
           ></Image>
           <div className="shrink-0 rounded-lg bg-white p-4 shadow">
-            <p>View active booking dates</p>
+            <div className="flex items-center gap-4">
+              <div className="rounded bg-primary-100 p-2"></div>
+              <p className="text-sm text-muted-100">Booked</p>
+            </div>
             <ManagerCalendar bookings={venue.bookings} />
           </div>
         </div>
