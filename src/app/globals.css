@@ -152,8 +152,9 @@
 }
 
 /* Manager booking calendar  */
-.days-booked .rdp-day_button {
-  background-color: var(--color-secondary-70);
+.days-booked {
+  background-color: var(--color-primary-100);
+  color: white;
 }
 
 /* Booking calendar  */
