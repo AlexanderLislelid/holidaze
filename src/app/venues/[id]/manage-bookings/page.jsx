@@ -35,7 +35,9 @@ export default async function ManageBookingsPage({ params }) {
         </div>
 
         <section className="flex flex-col gap-3">
-          <h3 className="font-heading text-xl font-medium">Guest list</h3>
+          <h3 className="font-heading text-xl font-medium">
+            {venue.bookings.length > 0 ? "Guests" : "No guests yet"}
+          </h3>
           <ul className="flex flex-col gap-3">
             {venue.bookings.map((booking) => (
               <li key={booking.id}>
