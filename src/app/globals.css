@@ -151,6 +151,11 @@
   }
 }
 
+/* Manager booking calendar  */
+.days-booked .rdp-day_button {
+  background-color: var(--color-secondary-70);
+}
+
 /* Booking calendar  */
 .rdp-root.booking-calendar {
   /* Main color: selected dates, today, border */

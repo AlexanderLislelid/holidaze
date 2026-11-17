@@ -2,6 +2,7 @@ import { apiRequest } from "@/lib/api";
 import BreadCrumb from "@/components/navigation/BreadCrumb";
 import Image from "next/image";
 import { UsersRound } from "lucide-react";
+import ManagerCalendar from "@/components/calendars/ManagerCalendar";
 export default async function ManageBookingsPage({ params }) {
   const { id } = await params;
   const { data: venue } = await apiRequest(
@@ -11,12 +12,12 @@ export default async function ManageBookingsPage({ params }) {
   return (
     <div>
       <BreadCrumb href="/profile/venues" name="Venues" />
-      <div>
-        <div className="m-4 flex flex-col gap-4">
-          <div>
-            <h2 className="text-2xl font-semibold">{venue.name}</h2>
-            <p className="text-sm text-text-80">Bookings for this venue</p>
-          </div>
+      <div className="mx-4 mb-8 flex flex-col gap-6">
+        <div>
+          <h2 className="text-2xl font-semibold">{venue.name}</h2>
+          <p className="text-sm text-text-80">Bookings for this venue</p>
+        </div>
+        <div className="flex flex-col gap-4 md:flex-row md:justify-between">
           <Image
             src={venue.media[0]?.url || "https://placehold.net/400x200.png"}
             alt={venue.media[0]?.alt || `${venue.name}`}
@@ -24,11 +25,13 @@ export default async function ManageBookingsPage({ params }) {
             height={200}
             className="rounded-lg"
           ></Image>
+          <ManagerCalendar bookings={venue.bookings} />
         </div>
-        <ul>
+
+        <ul className="flex flex-col gap-4">
           {venue.bookings.map((booking) => (
             <li key={booking.id}>
-              <div className="m-4 flex max-w-125 justify-between rounded-2xl border border-border bg-white p-4 shadow-md">
+              <div className="flex max-w-125 justify-between rounded-2xl border border-border bg-white p-4 shadow-md">
                 <div className="flex items-center gap-4">
                   <Image
                     src={booking.customer.avatar?.url || ""}
