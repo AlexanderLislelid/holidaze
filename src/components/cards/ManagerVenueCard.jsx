@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { MapPin, SquarePen, Users } from "lucide-react";
 import VenueTags from "../venues/VenueTags";
+import { PLACEHOLDER_IMAGE } from "@/lib/constants";
 
 export default function ManagerVenueCard({ venue }) {
   const bookingsQty = venue._count.bookings;
@@ -10,7 +11,7 @@ export default function ManagerVenueCard({ venue }) {
     <div className="flex flex-col rounded-xl bg-white p-3 shadow-md">
       <div className="relative h-48 w-full">
         <Image
-          src={venue.media?.[0]?.url || "https://placehold.co/400.png"}
+          src={venue.media?.[0]?.url || PLACEHOLDER_IMAGE}
           alt={venue.media?.[0]?.alt || venue.name}
           fill
           className="rounded-xl object-cover"

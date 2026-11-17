@@ -1,6 +1,7 @@
 import { ArrowRight, MapPin, Star, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { PLACEHOLDER_IMAGE } from "@/lib/constants";
 
 export default function VenueCard({ venue }) {
   const image = venue.media?.[0];
@@ -15,7 +16,7 @@ export default function VenueCard({ venue }) {
     >
       <div className="relative h-48">
         <Image
-          src={image?.url || "https://placehold.co/400.png"}
+          src={image?.url || PLACEHOLDER_IMAGE}
           alt={image?.alt || venue.name}
           fill
           sizes="(min-width: 640px) 50vw, 100vw"

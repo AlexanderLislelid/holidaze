@@ -3,6 +3,7 @@ import BreadCrumb from "@/components/navigation/BreadCrumb";
 import Image from "next/image";
 import { UsersRound } from "lucide-react";
 import ManagerCalendar from "@/components/calendars/ManagerCalendar";
+import { PLACEHOLDER_IMAGE } from "@/lib/constants";
 export default async function ManageBookingsPage({ params }) {
   const { id } = await params;
   const { data: venue } = await apiRequest(
@@ -19,7 +20,7 @@ export default async function ManageBookingsPage({ params }) {
         </div>
         <div className="mb-8 flex flex-col gap-4 md:flex-row md:gap-12">
           <Image
-            src={venue.media[0]?.url || "https://placehold.net/400x200.png"}
+            src={venue.media[0]?.url || PLACEHOLDER_IMAGE}
             alt={venue.media[0]?.alt || `${venue.name}`}
             width={400}
             height={200}
