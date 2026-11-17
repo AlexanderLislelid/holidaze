@@ -229,3 +229,12 @@ This file documents all use of AI tools in this project.
 - **Outcome:** got review and and some suggested changes and fixed the bugs found in review (typos, a wrong variable and a mixed up ternary).
 
 ---
+
+## 26. Placeholder image for venues
+
+- **Tool used:** Claude Code (Anthropic)
+- **Date:** 17 November 2026
+- **Purpose:** Venues without images used external placeholder URLs. Asked AI to generate a local placeholder image and replace the old placeholder URLs.
+- **Outcome:** got a generated venue-placeholder.svg in public/img, added a PLACEHOLDER_IMAGE constant in constants.js and replaced the old URLs.
+
+---
