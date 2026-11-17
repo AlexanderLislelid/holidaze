@@ -17,50 +17,56 @@ export default async function ManageBookingsPage({ params }) {
           <h2 className="text-2xl font-semibold">{venue.name}</h2>
           <p className="text-sm text-text-80">Bookings for this venue</p>
         </div>
-        <div className="flex flex-col gap-4 md:flex-row md:justify-between">
+        <div className="mb-8 flex flex-col gap-4 md:flex-row md:gap-12">
           <Image
             src={venue.media[0]?.url || "https://placehold.net/400x200.png"}
             alt={venue.media[0]?.alt || `${venue.name}`}
             width={400}
             height={200}
-            className="rounded-lg"
+            className="w-full min-w-0 rounded-lg object-cover md:aspect-auto md:flex-1"
           ></Image>
-          <ManagerCalendar bookings={venue.bookings} />
+          <div className="shrink-0 rounded-lg bg-white p-4 shadow">
+            <p>View active booking dates</p>
+            <ManagerCalendar bookings={venue.bookings} />
+          </div>
         </div>
 
-        <ul className="flex flex-col gap-4">
-          {venue.bookings.map((booking) => (
-            <li key={booking.id}>
-              <div className="flex max-w-125 justify-between rounded-2xl border border-border bg-white p-4 shadow-md">
-                <div className="flex items-center gap-4">
-                  <Image
-                    src={booking.customer.avatar?.url || ""}
-                    alt={
-                      booking.customer.avatar?.alt ||
-                      `${booking.customer.name}'s avatar`
-                    }
-                    width={50}
-                    height={50}
-                    className="rounded-full object-cover"
-                  ></Image>
-                  <div>
-                    <p className="font-heading text-xl font-medium capitalize">
-                      {booking.customer.name}
-                    </p>
-                    <p className="text-[13px]">
-                      {new Date(booking.dateFrom).toLocaleDateString("nb-NO")} -{" "}
-                      {new Date(booking.dateTo).toLocaleDateString("nb-NO")}
-                    </p>
+        <section className="flex flex-col gap-3">
+          <h3 className="font-heading text-xl font-medium">Guest list</h3>
+          <ul className="flex flex-col gap-3">
+            {venue.bookings.map((booking) => (
+              <li key={booking.id}>
+                <div className="flex w-full items-center justify-between gap-4 rounded-xl border border-border bg-white px-5 py-4 shadow-sm">
+                  <div className="flex items-center gap-4">
+                    <Image
+                      src={booking.customer.avatar?.url || ""}
+                      alt={
+                        booking.customer.avatar?.alt ||
+                        `${booking.customer.name}'s avatar`
+                      }
+                      width={50}
+                      height={50}
+                      className="size-12 shrink-0 rounded-full object-cover"
+                    ></Image>
+                    <div className="">
+                      <p className="truncate font-heading text-lg font-medium capitalize">
+                        {booking.customer.name}
+                      </p>
+                      <p className="text-sm text-text-80">
+                        {new Date(booking.dateFrom).toLocaleDateString("nb-NO")}{" "}
+                        - {new Date(booking.dateTo).toLocaleDateString("nb-NO")}
+                      </p>
+                    </div>
                   </div>
+                  <p className="flex shrink-0 items-center gap-2 rounded-full bg-primary-10 px-3 py-1 text-sm font-medium text-primary-100">
+                    <UsersRound size={16} />
+                    {booking.guests} guests
+                  </p>
                 </div>
-                <p className="flex items-end gap-2 text-sm">
-                  <UsersRound size={18} className="text-primary-100" />
-                  {booking.guests} guests
-                </p>
-              </div>
-            </li>
-          ))}
-        </ul>
+              </li>
+            ))}
+          </ul>
+        </section>
       </div>
     </div>
   );
