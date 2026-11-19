@@ -17,7 +17,7 @@ export default function UserVenues() {
     async function fetchVenues() {
       try {
         const { data } = await apiRequest(
-          `holidaze/profiles/${user.name}/venues?owner=true&bookings=true`,
+          `holidaze/profiles/${user.name}/venues?_owner=true&_bookings=true`,
           { token: accessToken },
         );
 
