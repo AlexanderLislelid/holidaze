@@ -108,7 +108,11 @@ export default function BookingForm({
         <p className="font-bold">{total}kr</p>
       </div>
       {error && <p className="text-sm text-error-text">{error}</p>}
-      <button type="submit" disabled={isLoading || nights < 1}>
+      <button
+        type="submit"
+        className="rounded-lg bg-primary-100 px-2 py-1 text-white"
+        disabled={isLoading || nights < 1}
+      >
         {isLoading ? "Booking..." : "Book now"}
       </button>
       <ConfirmationModal
