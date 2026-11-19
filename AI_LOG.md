@@ -238,3 +238,12 @@ This file documents all use of AI tools in this project.
 - **Outcome:** got a generated venue-placeholder.svg in public/img, added a PLACEHOLDER_IMAGE constant in constants.js and replaced the old URLs.
 
 ---
+
+## 27. Shared login check for profile pages
+
+- **Tool used:** Claude Code (Anthropic)
+- **Date:** 19 November 2026
+- **Purpose:** UserVenues showed "Loading venues..." forever when no user was logged in. Asked why the return in useEffect did not stop it, and whether it is normal to need isClient checks in every component.
+- **Outcome:** Learned that return inside useEffect only stops the effect, not the render, and that the checks are needed because the user is stored in localStorage, which the server cannot read. Claude Code suggested using a layout.jsx for /profile and explained the simplest way to build it: one isClient check and one login check in the layout, so all /profile pages are covered and the components inside can assume the user exists. The old checks were then removed.
+
+---

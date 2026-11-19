@@ -5,15 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { SquarePen } from "lucide-react";
 import UserBookings from "@/components/profile/UserBookings";
-import { useIsClient } from "usehooks-ts";
 
 export default function ProfilePage() {
   const user = useAuthStore((state) => state.user);
-  const isClient = useIsClient();
-
-  if (!isClient) return null;
-  if (!user)
-    return <p className="m-4">You have to be logged in to see your profile</p>;
 
   return (
     <div>

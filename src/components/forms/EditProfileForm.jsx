@@ -2,7 +2,6 @@
 
 import useAuthStore from "@/store/authStore";
 import { useEffect, useState } from "react";
-import { useIsClient } from "usehooks-ts";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -18,8 +17,6 @@ export default function EditProfileForm() {
   const updateUser = useAuthStore((state) => state.updateUser);
   const accessToken = useAuthStore((state) => state.accessToken);
   const router = useRouter();
-
-  const isClient = useIsClient();
   const [showToast, setShowToast] = useState(false);
 
   const {
@@ -51,10 +48,6 @@ export default function EditProfileForm() {
       venueManager: user.venueManager,
     });
   }, [user, reset]);
-
-  if (!isClient) return null;
-  if (!user)
-    return <p className="m-4">You have to be logged in to edit your profile</p>;
 
   async function onSubmit(formData) {
     const { avatarAlt, avatarUrl, bannerAlt, bannerUrl, bio, venueManager } =
