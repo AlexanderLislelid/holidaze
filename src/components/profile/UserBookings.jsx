@@ -112,13 +112,20 @@ export default function UserBookings({ limit }) {
                     </p>
                   </div>
 
-                  <div className="flex gap-2 text-primary-100">
-                    {booking.venue?.meta?.breakfast && <Utensils size={18} />}
-                    {booking.venue?.meta?.parking && (
-                      <ParkingSquare size={18} />
-                    )}
-                    {booking.venue?.meta?.pets && <PawPrint size={18} />}
-                    {booking.venue?.meta?.wifi && <Wifi size={18} />}
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-1 text-sm">
+                      <UsersRound size={18} className="text-primary-100" />
+                      <p>Guests {booking.guests}</p>
+                    </div>
+
+                    <div className="flex gap-2 text-primary-100">
+                      {booking.venue?.meta?.breakfast && <Utensils size={18} />}
+                      {booking.venue?.meta?.parking && (
+                        <ParkingSquare size={18} />
+                      )}
+                      {booking.venue?.meta?.pets && <PawPrint size={18} />}
+                      {booking.venue?.meta?.wifi && <Wifi size={18} />}
+                    </div>
                   </div>
                 </div>
               </div>
