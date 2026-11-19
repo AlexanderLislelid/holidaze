@@ -13,6 +13,7 @@ import {
   Utensils,
   Wifi,
 } from "lucide-react";
+import Image from "next/image";
 
 /**
  * Fetches and shows the logged-in user's bookings.
@@ -88,27 +89,36 @@ export default function UserBookings({ limit }) {
 
           return (
             <li key={booking.id}>
-              <div className="flex flex-col gap-2 rounded-xl border border-border bg-white p-4">
-                <div className="flex justify-between gap-2">
-                  <h3 className="font-medium">{booking.venue?.name}</h3>
-                  <p className="shrink-0 text-[12px] text-text-70">
-                    {dateFrom} - {dateTo}
-                  </p>
+              <div className="flex gap-3 overflow-hidden rounded-xl border border-border bg-white">
+                <div className="relative w-24 shrink-0 bg-text-10 sm:w-32">
+                  {booking.venue?.media?.[0]?.url && (
+                    <Image
+                      src={booking.venue.media[0].url}
+                      alt={booking.venue.media[0].alt || booking.venue.name}
+                      fill
+                      sizes="128px"
+                      className="object-cover"
+                    />
+                  )}
                 </div>
-                <div className="flex justify-between">
-                  <div className="flex items-center gap-2 text-sm">
-                    <UsersRound size={18} className="text-primary-100" />
-                    <p>Guests {booking.guests}</p>
+
+                <div className="flex min-w-0 flex-1 flex-col justify-between gap-2 py-3 pr-4">
+                  <div className="min-w-0">
+                    <h3 className="truncate font-medium">
+                      {booking.venue?.name}
+                    </h3>
+                    <p className="text-[12px] text-text-70">
+                      {dateFrom} - {dateTo}
+                    </p>
                   </div>
-                  <div className="flex gap-1 text-primary-100">
-                    {booking.venue.meta.breakfast ? <Utensils size={18} /> : ""}
-                    {booking.venue.meta.parking ? (
+
+                  <div className="flex gap-2 text-primary-100">
+                    {booking.venue?.meta?.breakfast && <Utensils size={18} />}
+                    {booking.venue?.meta?.parking && (
                       <ParkingSquare size={18} />
-                    ) : (
-                      ""
                     )}
-                    {booking.venue.meta.pets ? <PawPrint size={18} /> : ""}
-                    {booking.venue.meta.wifi ? <Wifi size={18} /> : ""}
+                    {booking.venue?.meta?.pets && <PawPrint size={18} />}
+                    {booking.venue?.meta?.wifi && <Wifi size={18} />}
                   </div>
                 </div>
               </div>
