@@ -25,7 +25,12 @@ export default async function Venues({
   const meta = results.at(-1).meta;
 
   if (!data.length) {
-    return <p>No venues found.</p>;
+    return (
+      <p className="mx-4 my-15 text-center text-lg wrap-break-word">
+        No matches found for{" "}
+        <span className="text-primary-hover">"{query}"</span>
+      </p>
+    );
   }
 
   return (
