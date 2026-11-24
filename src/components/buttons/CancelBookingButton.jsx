@@ -33,7 +33,7 @@ export default function CancelBookingButton({
     <div>
       <button
         onClick={() => setConfirmOpen(true)}
-        className="group flex max-w-62 items-center justify-center gap-2 rounded-md px-2 py-1 text-sm text-text-70 hover:text-text-100"
+        className="group flex max-w-62 items-center justify-center gap-2 rounded-md border border-border px-2 py-1 text-sm text-text-70 hover:border-primary-40 hover:text-text-100"
       >
         Cancel <CircleX size={16} className="group-hover:text-error-icon" />
       </button>
