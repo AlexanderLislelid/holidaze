@@ -14,6 +14,7 @@ import {
   Wifi,
 } from "lucide-react";
 import Image from "next/image";
+import CancelBookingButton from "../buttons/CancelBookingButton";
 
 /**
  * Fetches and shows the logged-in user's bookings.
@@ -36,11 +37,16 @@ import Image from "next/image";
  * // Bookings page: all bookings
  * <UserBookings />
  */
+
 export default function UserBookings({ limit }) {
   const user = useAuthStore((state) => state.user);
   const accessToken = useAuthStore((state) => state.accessToken);
   const [bookings, setBookings] = useState(null);
   const [error, setError] = useState(null);
+
+  function handleCancel(id) {
+    setBookings((prev) => prev.filter((booking) => booking.id !== id));
+  }
 
   useEffect(() => {
     if (!user || !accessToken) return;
@@ -103,13 +109,25 @@ export default function UserBookings({ limit }) {
                 </div>
 
                 <div className="flex min-w-0 flex-1 flex-col justify-between gap-2 py-3 pr-4">
-                  <div className="min-w-0">
-                    <h3 className="truncate font-medium">
-                      {booking.venue?.name}
-                    </h3>
-                    <p className="text-[12px] text-text-70">
-                      {dateFrom} - {dateTo}
-                    </p>
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="min-w-0">
+                      <h3 className="truncate font-medium">
+                        {booking.venue?.name}
+                      </h3>
+                      <p className="text-[12px] text-text-70">
+                        {dateFrom} - {dateTo}
+                      </p>
+                    </div>
+
+                    {new Date(booking.dateFrom) > today && (
+                      <div className="shrink-0">
+                        <CancelBookingButton
+                          bookingId={booking.id}
+                          venueName={booking.venue?.name}
+                          onCancelled={handleCancel}
+                        />
+                      </div>
+                    )}
                   </div>
 
                   <div className="flex items-center justify-between gap-2">
