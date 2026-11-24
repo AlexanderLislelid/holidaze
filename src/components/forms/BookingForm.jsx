@@ -16,10 +16,13 @@ export default function BookingForm({
   maxGuests = 1,
   venueId,
   venueName,
+  ownerName,
 }) {
   const [selected, setSelected] = useState();
   const [guests, setGuests] = useState(1);
   const accessToken = useAuthStore((state) => state.accessToken);
+  const user = useAuthStore((state) => state.user);
+  const isOwner = user?.name === ownerName;
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showToast, setShowToast] = useState(false);
@@ -111,9 +114,13 @@ export default function BookingForm({
       <button
         type="submit"
         className="rounded-lg bg-primary-100 px-2 py-1 text-white"
-        disabled={isLoading || nights < 1}
+        disabled={isLoading || nights < 1 || isOwner}
       >
-        {isLoading ? "Booking..." : "Book now"}
+        {isOwner
+          ? "You cannot book your own venue"
+          : isLoading
+            ? "Booking..."
+            : "Book now"}
       </button>
       <ConfirmationModal
         open={confirmOpen}
