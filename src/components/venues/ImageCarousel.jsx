@@ -40,12 +40,14 @@ export default function ImageCarousel({ images = [], altText = "" }) {
           <button
             onClick={() => emblaApi?.scrollPrev()}
             className="absolute top-0 flex h-full transform items-center px-2 text-white transition duration-400 hover:bg-black/40"
+            aria-label="previous image"
           >
             <ChevronLeft size={30} />
           </button>
           <button
             onClick={() => emblaApi?.scrollNext()}
             className="absolute top-0 right-0 flex h-full transform items-center px-2 text-white transition duration-400 hover:bg-black/40"
+            aria-label="next image"
           >
             <ChevronRight size={30} />
           </button>
@@ -53,6 +55,7 @@ export default function ImageCarousel({ images = [], altText = "" }) {
           <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 gap-2 rounded-full bg-secondary-100/20 p-2">
             {images.map((_, index) => (
               <button
+                aria-label={`go to image ${index + 1} of ${images.length}`}
                 key={index}
                 onClick={() => emblaApi?.scrollTo(index)}
                 className={`size-2.5 rounded-full ${
