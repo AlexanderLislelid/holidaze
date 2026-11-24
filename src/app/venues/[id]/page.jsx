@@ -15,7 +15,7 @@ export default async function VenuePage({ params }) {
   );
 
   return (
-    <main>
+    <div>
       <BreadCrumb href="/" name="home" />
       <div className="mx-4 mb-6 flex flex-col gap-2">
         <h1 className="text-3xl font-semibold">{venue.name}</h1>
@@ -100,6 +100,6 @@ export default async function VenuePage({ params }) {
           />
         </div>
       </div>
-    </main>
+    </div>
   );
 }

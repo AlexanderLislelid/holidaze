@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
         <Suspense fallback={<HeaderFallback />}>
           <Header />
         </Suspense>
-        <div className="mx-auto w-full max-w-300 flex-1">{children}</div>
+        <main className="mx-auto w-full max-w-300 flex-1">{children}</main>
         <Footer />
       </body>
     </html>

@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Login() {
   return (
-    <main>
+    <div>
       <BreadCrumb href={"/"} name={"home"} />
       <div className="flex flex-col justify-center md:mx-6 md:flex-row">
         <Image
@@ -17,6 +17,6 @@ export default function Login() {
         />
         <LoginForm />
       </div>
-    </main>
+    </div>
   );
 }

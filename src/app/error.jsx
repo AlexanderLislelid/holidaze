@@ -2,7 +2,7 @@
 
 export default function Error({ retry }) {
   return (
-    <main className="my-30 flex flex-col items-center gap-2">
+    <div className="my-30 flex flex-col items-center gap-2">
       <h1 className="text-2xl">Something went wrong</h1>
       <p>Please try again</p>
       <button
@@ -11,6 +11,6 @@ export default function Error({ retry }) {
       >
         Retry
       </button>
-    </main>
+    </div>
   );
 }
