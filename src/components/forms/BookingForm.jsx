@@ -73,7 +73,7 @@ export default function BookingForm({
     }
   }
 
-  return accessToken ? (
+  return (
     <form
       className="flex w-fit flex-col gap-8 rounded-xl bg-white p-6"
       onSubmit={handleSubmit}
@@ -111,17 +111,28 @@ export default function BookingForm({
         <p className="font-bold">{total}kr</p>
       </div>
       {error && <p className="text-sm text-error-text">{error}</p>}
-      <button
-        type="submit"
-        className="rounded-lg bg-primary-100 px-2 py-1 text-white"
-        disabled={isLoading || nights < 1 || isOwner}
-      >
-        {isOwner
-          ? "You cannot book your own venue"
-          : isLoading
-            ? "Booking..."
-            : "Book now"}
-      </button>
+      {accessToken ? (
+        <button
+          type="submit"
+          className="rounded-lg bg-primary-100 px-2 py-1 text-white"
+          disabled={isLoading || nights < 1 || isOwner}
+        >
+          {isOwner
+            ? "You cannot book your own venue"
+            : isLoading
+              ? "Booking..."
+              : "Book now"}
+        </button>
+      ) : (
+        <button
+          type="submit"
+          className="rounded-lg bg-primary-100 px-2 py-1 text-white"
+          disabled={!accessToken}
+        >
+          Log in to book
+        </button>
+      )}
+
       <ConfirmationModal
         open={confirmOpen}
         title="Confirm booking"
@@ -134,7 +145,5 @@ export default function BookingForm({
         <SuccessToast message={`Successfully booked ${venueName}`} />
       )}
     </form>
-  ) : (
-    <p>Please log in to book</p>
   );
 }
