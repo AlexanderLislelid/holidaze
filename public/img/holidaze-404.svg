@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-labelledby="t d">
+  <title id="t">404 – sida finst ikkje</title>
+  <desc id="d">Ein koffert flyt aleine på havet framfor ein solnedgang som utgjer nullen i 404, med ei lita øy og eit skilt med spørsmålsteikn.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#76AEDA"/>
+      <stop offset="1" stop-color="#F4EDEB"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2C6DA6"/>
+      <stop offset="1" stop-color="#1F4F7A"/>
+    </linearGradient>
+    <clipPath id="card"><rect x="0" y="0" width="800" height="520" rx="36"/></clipPath>
+    <clipPath id="aboveSea"><rect x="0" y="0" width="800" height="338"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#card)">
+    <!-- Himmel -->
+    <rect width="800" height="520" fill="url(#sky)"/>
+
+    <!-- Skyer -->
+    <g fill="#F4EDEB" opacity="0.9">
+      <ellipse cx="140" cy="90" rx="58" ry="18"/>
+      <ellipse cx="175" cy="78" rx="34" ry="20"/>
+      <ellipse cx="630" cy="70" rx="64" ry="18"/>
+      <ellipse cx="600" cy="60" rx="30" ry="17"/>
+      <ellipse cx="668" cy="62" rx="26" ry="14"/>
+    </g>
+
+    <!-- Fuglar -->
+    <g fill="none" stroke="#2C6DA6" stroke-width="3" stroke-linecap="round" opacity="0.7">
+      <path d="M520 120 q8 -8 16 0 q8 -8 16 0"/>
+      <path d="M556 100 q6 -6 12 0 q6 -6 12 0"/>
+    </g>
+
+    <!-- 4 0 4 : nullen er sola -->
+    <g clip-path="url(#aboveSea)">
+      <circle cx="400" cy="250" r="118" fill="#F8D9A8" opacity="0.8"/>
+      <circle cx="400" cy="250" r="96" fill="#F3A951"/>
+      <circle cx="400" cy="250" r="72" fill="#EFD74E"/>
+    </g>
+    <g fill="#2C6DA6">
+      <!-- venstre 4 -->
+      <path d="M190 150 h44 l-58 118 h70 v-46 h40 v46 h26 v36 h-26 v34 h-40 v-34 h-118 v-34 z"/>
+      <!-- høgre 4 -->
+      <path d="M538 150 h44 l-58 118 h70 v-46 h40 v46 h26 v36 h-26 v34 h-40 v-34 h-118 v-34 z"/>
+    </g>
+
+    <!-- Hav -->
+    <rect x="0" y="338" width="800" height="182" fill="url(#sea)"/>
+    <!-- Solrefleks -->
+    <g fill="#EFD74E" opacity="0.8">
+      <rect x="330" y="352" width="140" height="6" rx="3"/>
+      <rect x="350" y="370" width="100" height="5" rx="2.5"/>
+      <rect x="372" y="386" width="56" height="4" rx="2"/>
+    </g>
+    <!-- Bølgjer -->
+    <g fill="none" stroke="#76AEDA" stroke-width="4" stroke-linecap="round" opacity="0.6">
+      <path d="M60 420 q20 -12 40 0 t40 0"/>
+      <path d="M220 470 q20 -12 40 0 t40 0"/>
+      <path d="M560 440 q20 -12 40 0 t40 0"/>
+      <path d="M650 490 q20 -12 40 0 t40 0"/>
+    </g>
+
+    <!-- Øy med palme og skilt -->
+    <ellipse cx="690" cy="345" rx="92" ry="22" fill="#EFD74E"/>
+    <ellipse cx="690" cy="341" rx="80" ry="15" fill="#F4EDEB" opacity="0.5"/>
+    <path d="M700 340 q-6 -60 18 -112" fill="none" stroke="#8A5A2B" stroke-width="9" stroke-linecap="round"/>
+    <g fill="#2C6DA6">
+      <path d="M718 228 q-40 -24 -74 4 q38 -6 74 -4z"/>
+      <path d="M718 228 q-20 -42 -64 -38 q36 14 64 38z"/>
+      <path d="M718 228 q24 -40 66 -30 q-38 8 -66 30z"/>
+      <path d="M718 228 q44 -6 66 26 q-34 -20 -66 -26z"/>
+    </g>
+    <!-- Skilt -->
+    <rect x="653" y="292" width="6" height="48" fill="#8A5A2B"/>
+    <path d="M626 286 h52 l12 12 l-12 12 h-52 z" fill="#F3A951"/>
+    <text x="652" y="305" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#2C6DA6" text-anchor="middle">?</text>
+
+    <!-- Koffert som flyt -->
+    <g transform="translate(150 382) rotate(-10)">
+      <path d="M22 0 v-14 a8 8 0 0 1 8 -8 h20 a8 8 0 0 1 8 8 v14" fill="none" stroke="#1F4F7A" stroke-width="6"/>
+      <rect x="0" y="0" width="80" height="52" rx="8" fill="#F3A951"/>
+      <rect x="18" y="0" width="7" height="52" fill="#EFD74E"/>
+      <rect x="55" y="0" width="7" height="52" fill="#EFD74E"/>
+      <circle cx="40" cy="26" r="6" fill="#F4EDEB"/>
+    </g>
+    <path d="M128 420 q20 -10 40 0 t40 0 t36 0" fill="none" stroke="#F4EDEB" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+  </g>
+</svg>
