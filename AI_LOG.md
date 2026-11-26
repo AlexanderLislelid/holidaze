@@ -247,3 +247,12 @@ This file documents all use of AI tools in this project.
 - **Outcome:** Learned that return inside useEffect only stops the effect, not the render, and that the checks are needed because the user is stored in localStorage, which the server cannot read. Claude Code suggested using a layout.jsx for /profile and explained the simplest way to build it: one isClient check and one login check in the layout, so all /profile pages are covered and the components inside can assume the user exists. The old checks were then removed.
 
 ---
+
+## 28. 404 SVG
+
+- **Tool used:** Claude Code (Anthropic)
+- **Date:** 26 November 2026
+- **Purpose:** Wanted a custom SVG for my 404 page using my color palette
+- **Outcome:** Got what I asked for.
+
+---
